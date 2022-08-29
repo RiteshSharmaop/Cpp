@@ -1,7 +1,8 @@
 #include<iostream>
 using namespace std;
 int main(){
-    cout << "Hii";
+    int a = 5;
+    cout<<sizeof(a);
     return 0;   
     
 }
