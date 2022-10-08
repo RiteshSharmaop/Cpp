@@ -1,3 +1,2 @@
-
-    //     return 1;
-    // }
+: v) cout<< j <<" ";
+            // cout<<endl;

@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+// Love B approach
 int totalWays(int coin[],int amount,int size){
     if(amount==0){
         return 1;

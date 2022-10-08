@@ -69,7 +69,7 @@ void threePairSum(int arr[] , int n , int newtarget){
 }
 int main(){
     int arr[] = {1,3,11,6,13,4};
-    int newtarget = 23;
+    int newtarget = 27;
     // int n = sizeof(arr)/sizeof(arr[0]);
     int n = 6;
     // threePairSum(arr,n,newtarget);
