@@ -13,11 +13,17 @@ freopen("output1.txt", "w", stdout);
 
 int main() {
     init_code();
-    int r,b;
-    cin>>r>>b;
-    int diff = max(r,b) - min(r,b);
-    cout<<min(r,b)<<" " << diff/2<<endl;
+    int t;
+    cin>>t;
+    while(t--){
+        int a,b;
+        cin>>a>>b;
+        int c = a % b;
+        if(c == 0){
+            cout<<c<<endl;
+        }else 
+            cout<<b - c<<endl;
+    }
     return 0;
 }
-
 

@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void init_code() {
+// fast_io;
+#ifndef ONLINE_JUDGE
+
+freopen("input1.txt", "r", stdin);
+freopen("output1.txt", "w", stdout);
+
+#endif // ONLINE_JUDGE 
+}
+
+int main() {
+    init_code();
+    long long int t;
+    cin>>t;
+    
+    long long int arr[t];
+    for(int i = 0 ; i < t ; i++){
+        cin>>arr[i];
+    }
+    long long int i = 0;
+    long long int j = t-1;
+    long long int s = 0 , d = 0;
+    while(i<j){
+        s += max(arr[i],arr[j]);
+        if(arr[i]<arr[j]){
+            j--;
+        }else i++;
+        d += max(arr[i] , arr[j]);
+        if(arr[i]<arr[j]){
+            j--;
+        }else i++;
+    }
+    cout<<s<<" "<<d<<endl;
+    return 0;
+}
+
+

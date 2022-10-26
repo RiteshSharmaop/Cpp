@@ -13,10 +13,19 @@ freopen("output1.txt", "w", stdout);
 
 int main() {
     init_code();
-    int r,b;
-    cin>>r>>b;
-    int diff = max(r,b) - min(r,b);
-    cout<<min(r,b)<<" " << diff/2<<endl;
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        if(n % 2 == 0){
+            int ans = n/2;
+            cout<<ans-1<<endl;
+        }else {
+            int ans = n/2;
+            cout<<ans<<endl;
+        }
+    }
     return 0;
 }
 
