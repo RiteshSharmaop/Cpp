@@ -1,41 +1,33 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool solve(string s , stack<char> st , map<char , int> m){
+bool checkRedundantBracket(string s , stack<char> st){
     for(int i = 0 ; i < s.length() ; ++i){
-        if(s[i] == '('){
-            m[0] += 1;
-        }
-        if(s[i] == ')'){
-            m[1]++;
-        }
-    }
-    if(m[0] != m[1] ) return true;
-    for(int i = 0 ; i < s.length() ; ++i){
-        if(s[i] == '('&& s[i+1] == '(' ){
+        if(s[i] == '(' || s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] =='%' ){
             st.push(s[i]);
         }
-
-        if(!st.empty() && s[i] == ')' && s[i+1] == ')'){
-            return true;
+        if(s[i] == ')'){
+            bool opePresent = true;
+            while(st.top() != '('){ 
+                if(st.top() == '+' ||st.top() == '-' || st.top() =='/' ||st.top() == '*'){
+                    opePresent = false;
+                }
+                st.pop();
+            }
+            if(opePresent == true){
+                return true;
+            }
+            st.pop(); // pop openint Brackets
         }
     }
-    return false;
+    return false;;
 }
 int main() {
-    int t;
-    cin>>t;
-    while(t--){
-        string s ;
-        cin>>s;
-        stack<char> st;
-        map<char , int> m;
-        m.insert(pair<char, int>('(', 0));
-        m.insert(pair<char, int>(')', 0));
-        
-        
-        if(solve(s,st , m)) cout<<"Yes"<<endl;
-        else cout<<"No"<<endl;
-    }
+    
+    string s  = "(a+c*b)+(c)";
+    // cin>>s;
+    stack<char> st;
+    if(checkRedundantBracket(s , st)) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
     return 0;
 }
 // (a+b)

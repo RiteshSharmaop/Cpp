@@ -6,31 +6,31 @@ void init_code() {
 #ifndef ONLINE_JUDGE
 
 freopen("input1.txt", "r", stdin);
-freopen("output1.txt", "w", stdout);
+freopen("output.txt", "w", stdout);
 
 #endif // ONLINE_JUDGE 
 }
-
+#define ll long long int
 int main() {
     init_code();
-   
     string s;
     cin>>s;
-    string str = "";
-    for(int i = 0 ; i < s.length() ; ++i){
-        if(s[i] == 'W' && s[i+1] == 'U' && s[i+2] == 'B'){
-            i += 2;
-            continue;
-        }
-        str.push_back(s[i]);
-        if(s[i+1] == 'W' && s[i+2] == 'U' && s[i+3] == 'B'){
-            str.push_back(' ');
+    bool flag = true;
+    for(int i = 1 ; i < s.length() ; i++){
+        if(s[i] >= 'a'){
+            flag = false;
+            break;
         }
     }
-    str.pop_back();
-    cout<<str<<endl;
-    
-    return 0;
+    if(flag){
+        for(int i = 0 ; i < s.length() ; i++){
+            if(s[i] >= 'a'){
+                s[i] -= 32;
+            }else {
+                s[i] += 32;
+            }
+        }
+        cout<<s<<endl;
+    }else cout<<s<<endl;
+    return 0; 
 }
-
-

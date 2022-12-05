@@ -2,7 +2,7 @@
 using namespace std;
 
 class Node{
-    // DAta Member
+    // Data Member
     public:
     int data;
     Node* next;
@@ -13,15 +13,11 @@ class Node{
         this->data = d;
         this->next = NULL;
     }
-
 };
-
 int main() {
     // Linked List Creation
     Node* first = new Node(4);
     cout<<first->data<<endl;
     cout<<first->next<<endl;
-
-
     return 0;
 }

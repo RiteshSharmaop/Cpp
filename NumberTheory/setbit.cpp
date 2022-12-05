@@ -11,7 +11,7 @@ int main() {
 
     int a = 9;
     int i = 1;
-    int k = 1<<i;
+    int k = 1<<i;  //mask
     if(a&k != 0) cout<<"Set"<<endl;
     else cout<<"Un-Set"<<endl;
 
