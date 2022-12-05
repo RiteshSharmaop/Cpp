@@ -10,7 +10,6 @@ class Node{
         this->next = NULL;
     }
 };
-
 void treverse(Node* Head){
     Node* temp = Head;
     while(temp!=NULL){
@@ -56,6 +55,7 @@ int main() {
 
 
     cout<<"Circle or Not : "<<endl;
-    cout<<isCircle(Head);
+    if(isCircle(Head)) cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
     return 0;
 }

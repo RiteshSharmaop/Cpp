@@ -1,4 +1,1 @@
-while(!st.empty()){
-        cout<<st.top()<<" ";
-        st.pop();
-    }
+(a + (b*c))
