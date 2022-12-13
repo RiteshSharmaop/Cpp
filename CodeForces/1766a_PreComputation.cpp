@@ -27,35 +27,32 @@ A=65,Z=90,a=97,z=122
 #define nt _int128
 #define ld long double
 long double PI =3.14159265358979323846;
-const int N = 1e5;
-vector<int> ans(4);
-void solve(){
-    int arr[] = {2,1,4,3};
-    stack<int> st;
-    st.push(-1);
-    for(int i = 3 ; i >= 0 ; i--){
-        if(arr[i] >= st.top()){
-            ans[i] = st.top();
-            st.push(arr[i]);
-        }else {
-            while(st.top() > arr[i]){
-                st.pop();
-            }
-            ans[i] = st.top();
-            st.push(arr[i]);
+vector<int> v;
+
+void cal(){
+    for(int i = 1 ; i <= 100000 ; i*=10){
+        for(int j = 1 ; j <= 9 ; j++){
+            v.pb(i*j);
         }
     }
-    for(auto i : ans) cout<<i<<" ";
-
+    // for(auto x:v)cout<<x<<" ";
 }
-
+int solve(){
+    ll n;
+    cin>>n;
+    int ans = 0;
+    for(auto i : v){
+        if(i <= n)ans++;
+    }
+    return ans;
+}
 int main() {
     init_code();
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
-    //     solve();
-    // }
-    solve();
+    long long testCase;
+    cin>>testCase;
+    cal();
+    while(testCase--){
+        cout<<solve()<<endl;
+    }
     return 0; 
 }
