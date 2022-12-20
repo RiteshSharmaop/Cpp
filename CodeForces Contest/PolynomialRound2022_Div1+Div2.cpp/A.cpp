@@ -1,4 +1,3 @@
-// Jai Mata Dii
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -35,7 +34,6 @@ long double PI =3.14159265358979323846;
 #define vll                 vector<long long>
 #define pb                  push_back
 #define eb                  emplace_back
-#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 /*
 #define int                 long long
@@ -62,32 +60,54 @@ long double PI =3.14159265358979323846;
 #define mn_all(c)           *min_element((c).begin(), (c).end())
 #define lwr_b(c, a)         lower_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
+#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 */
 
 const int N = 1e5;
-
 void solve(){
-    long long arr[] = {4, 3, 1, 5, 6};
-    int N = 5;
-    long long ans = -1;
-    long long maxi = -1;
-    for(int i = 1 ; i < N ; i++){
-        ans = arr[i-1] + arr[i];
-        maxi = max(maxi , arr[i]);
+    int n;
+    cin>>n;
+    string s , ans = "";
+    cin>>s;
+    char a = s[0];
+    for(int i = 1 ; i < n ; i++){
+        if(a == '0' && s[i] =='0'){
+            a = '0';
+            ans.push_back('+');
+        }else{
+            if(abs(a - s[i]) == 1){
+                ans.push_back('+');
+                a = '1';
+            }else{
+                ans.push_back('-');
+                a = '0';
+            }
+        }
     }
-    cout<<maxi<<endl;
-}
+    cout<<ans<<endl;
+/*
+-
++-++
++++-
+
+*/
+
+
+/*
+count 1 in string s;
+if(one is odd ) odd/2 +1 times add + infromt of one whick make total is equal to 1
+if(one is even ) add + in fron of one in odd/2 times which makes total is equal to 0
+add + in front of zero b/c adding number to zero it reremain same
+*/
+}   
 int main() {
     init_code();
-    FIO;
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
         solve();
-    // }
+    }
     
     return 0; 
 }
-
-

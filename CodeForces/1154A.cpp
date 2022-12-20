@@ -66,17 +66,18 @@ long double PI =3.14159265358979323846;
 */
 
 const int N = 1e5;
-
 void solve(){
-    long long arr[] = {4, 3, 1, 5, 6};
-    int N = 5;
-    long long ans = -1;
-    long long maxi = -1;
-    for(int i = 1 ; i < N ; i++){
-        ans = arr[i-1] + arr[i];
-        maxi = max(maxi , arr[i]);
+    int arr[4];
+    for(int i = 0 ; i < 4 ; i++){
+        cin>>arr[i];
     }
-    cout<<maxi<<endl;
+
+    sort(arr,arr+4);
+    for(int i = 0 ; i < 3 ; i++){
+        cout<<arr[3]-arr[i]<<" ";
+    }
+
+
 }
 int main() {
     init_code();

@@ -8,15 +8,11 @@ int main() {
     int ans[n];
     for(int i = 0 ; i < n ; i++ ){
         int item = arr[i];
-        while(!st.empty()){
-            if(st.top()< item){
-                ans[i] = st.top();
-                st.push(arr[i]);
-                break;
-            }else {
+        while(st.top() > arr[i]){
                 st.pop();
             }
-        }
+        ans[i] = st.top();
+        st.push(arr[i]);
     }
     for(int i = 0 ; i < n ; i++){
         cout<<ans[i]<<" ";

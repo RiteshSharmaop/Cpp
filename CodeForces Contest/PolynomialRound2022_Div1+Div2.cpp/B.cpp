@@ -1,4 +1,3 @@
-// Jai Mata Dii
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -35,7 +34,6 @@ long double PI =3.14159265358979323846;
 #define vll                 vector<long long>
 #define pb                  push_back
 #define eb                  emplace_back
-#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 /*
 #define int                 long long
@@ -62,32 +60,45 @@ long double PI =3.14159265358979323846;
 #define mn_all(c)           *min_element((c).begin(), (c).end())
 #define lwr_b(c, a)         lower_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
+#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 */
 
 const int N = 1e5;
-
 void solve(){
-    long long arr[] = {4, 3, 1, 5, 6};
-    int N = 5;
-    long long ans = -1;
-    long long maxi = -1;
-    for(int i = 1 ; i < N ; i++){
-        ans = arr[i-1] + arr[i];
-        maxi = max(maxi , arr[i]);
+    int n,m,k;
+    cin>>n>>m>>k;
+    vector<int> a(m);    int maxFreq;
+    int maxEle;
+    if((n%k)==0){
+        maxFreq = n / k;
+        maxEle = k;
+    }else {
+        maxFreq = (n / k )+1;
+        maxEle = (n%k);
     }
-    cout<<maxi<<endl;
-}
+    for(int i = 0 ; i < m ; i++){
+        cin>>a[i];
+    }
+    for(int i = 0 ; i < m ; i++){
+        if(a[i] > maxFreq){
+            maxEle = -1;
+            break;
+        }else if(a[i] == maxFreq){
+            maxEle--;
+        }
+    }
+    if(maxEle < 0) cout<<"NO"<<endl;
+    else cout<<"YES"<<endl;
+
+}   
 int main() {
     init_code();
-    FIO;
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
         solve();
-    // }
+    }
     
     return 0; 
 }
-
-

@@ -1,4 +1,3 @@
-// Jai Mata Dii
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -35,8 +34,6 @@ long double PI =3.14159265358979323846;
 #define vll                 vector<long long>
 #define pb                  push_back
 #define eb                  emplace_back
-#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-
 /*
 #define int                 long long
 #define PI                  3.1415926535897932384626
@@ -62,32 +59,32 @@ long double PI =3.14159265358979323846;
 #define mn_all(c)           *min_element((c).begin(), (c).end())
 #define lwr_b(c, a)         lower_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
+#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 */
 
 const int N = 1e5;
-
-void solve(){
-    long long arr[] = {4, 3, 1, 5, 6};
-    int N = 5;
-    long long ans = -1;
-    long long maxi = -1;
-    for(int i = 1 ; i < N ; i++){
-        ans = arr[i-1] + arr[i];
-        maxi = max(maxi , arr[i]);
+bool solve(){
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    map<char , int> m;
+    for(int i = 0 ; i < s.length() ; i++){
+        if(m[s[i]] >= 1  && s[i-1] != s[i]) return false;
+        m[s[i]]++;
     }
-    cout<<maxi<<endl;
+    return true;
 }
 int main() {
     init_code();
-    FIO;
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
-        solve();
-    // }
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
+        if(solve())cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
+    }
     
+    // solve();
     return 0; 
 }
-
-

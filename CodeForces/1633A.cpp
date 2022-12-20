@@ -1,4 +1,3 @@
-// Jai Mata Dii
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -22,27 +21,24 @@ A=65,Z=90,a=97,z=122
 // transform into graph
 
 
-#define ll                  long long int
-#define mp                  make_pair
-#define nt                  _int128
-#define ld                  long double
+#define ll long long
+#define pb emplace_back
+#define mp make_pair
+#define nt _int128
+#define ld long double
+/*
+#define int                 long long
+#define ull                 unsigned long long
+#define PI                  3.1415926535897932384626
+#define MOD                 1000000007 // 998244353
 #define vi                  vector<int>
 #define vb                  vector<bool>
-#define pii                 pair<int, int>
-#define ull                 unsigned long long
-long double PI =3.14159265358979323846;
 #define vvi                 vector<vector<int> >
 #define vll                 vector<long long>
 #define pb                  push_back
 #define eb                  emplace_back
-#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-
-/*
-#define int                 long long
-#define PI                  3.1415926535897932384626
-#define MOD                 1000000007 // 998244353
-#define vi                  vector<int>
 #define mp(a, b)            make_pair(a, b)
+#define pii                 pair<int, int>
 #define vpii                vector<pair<int, int> >
 #define mk(arr, n, type)    type *arr = new type[n];
 #define FOR(i, a, b)        for (int(i) = (a); (i) < (b); ++(i))
@@ -62,32 +58,36 @@ long double PI =3.14159265358979323846;
 #define mn_all(c)           *min_element((c).begin(), (c).end())
 #define lwr_b(c, a)         lower_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
+#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 */
 
+long double PI =3.14159265358979323846;
 const int N = 1e5;
 
 void solve(){
-    long long arr[] = {4, 3, 1, 5, 6};
-    int N = 5;
-    long long ans = -1;
-    long long maxi = -1;
-    for(int i = 1 ; i < N ; i++){
-        ans = arr[i-1] + arr[i];
-        maxi = max(maxi , arr[i]);
+    string s;
+    cin>>s;
+    int o = 0 , z = 0;
+    if(s.length() < 3){ 
+        cout<<0<<endl;
+        return;
     }
-    cout<<maxi<<endl;
+    for(int i = 0 ; i < s.length() ; i++){
+        if(s[i] == '0') z++;
+        else o++;
+    }
+    if(o != z) cout<<min(o,z)<<endl;
+    else cout<<z-1<<endl;
 }
+
 int main() {
     init_code();
-    FIO;
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
         solve();
-    // }
-    
+    }
+    // solve();
     return 0; 
 }
-
-

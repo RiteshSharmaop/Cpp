@@ -1,4 +1,3 @@
-// Jai Mata Dii
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -35,7 +34,6 @@ long double PI =3.14159265358979323846;
 #define vll                 vector<long long>
 #define pb                  push_back
 #define eb                  emplace_back
-#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 /*
 #define int                 long long
@@ -62,32 +60,40 @@ long double PI =3.14159265358979323846;
 #define mn_all(c)           *min_element((c).begin(), (c).end())
 #define lwr_b(c, a)         lower_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
+#define FIO                 ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 
 */
 
 const int N = 1e5;
-
 void solve(){
-    long long arr[] = {4, 3, 1, 5, 6};
-    int N = 5;
-    long long ans = -1;
-    long long maxi = -1;
-    for(int i = 1 ; i < N ; i++){
-        ans = arr[i-1] + arr[i];
-        maxi = max(maxi , arr[i]);
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i = 0 ; i < n ; i++){
+        cin>>a[i];
     }
-    cout<<maxi<<endl;
-}
+    int orr = a[0];
+    int andd = a[0];
+    for(int i = 0 ; i < n ; i++){
+        orr = orr | a[i];
+        andd = andd & a[i];
+    }
+    cout<<abs(orr-andd)<<endl;
+}   
 int main() {
     init_code();
-    FIO;
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
         solve();
-    // }
+    }
     
     return 0; 
 }
 
 
+
+/*
+    
+
+*/
