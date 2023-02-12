@@ -16,6 +16,8 @@ int CountOfSubSequnces(int i,int arr[] , int k,int n,int count,int sum){
     int r =  CountOfSubSequnces(i+1,arr,k,n,count,sum);
     return l+r;
     
+    // T.c --> O(2n)
+    // S.C --> O(n)
 }
 int main(){
     int arr[] = {1,2,1};

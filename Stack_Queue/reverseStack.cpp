@@ -26,9 +26,8 @@ void reverse(stack<int> &st ){
     reverse(st);
     insertAtBottom(st , topi);
     
-
-
 }
+
 int main() {
    
     stack<int> st;

@@ -17,7 +17,6 @@ int firstOc(int arr[],int target,int n){
         mid = s+(e-s)/2;
     }
     return ans; 
-
 }
 int LastOc(int arr[],int target,int n){
     int s = 0;

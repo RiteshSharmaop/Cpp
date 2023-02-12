@@ -31,7 +31,7 @@ void AllSequences(int i,int arr[],int n, vector<int>& v){
 }
 
 int main(){
-    int arr[] = {1,2,3};
+    int arr[] = {1,2,2};
     int n = 3;
     vector <int> v;
     AllSequences(0,arr,n,v);

@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
-long long int sqrt(int n){
-    int s = 0;
-    int e = n;
-    long long int mid = s+(e-s)/2;
-    long long int ans = -1;
+double sqrt(int n){
+    double s = 0;
+    double e = n;
+    double mid = s+(e-s)/2;
+    double ans = -1;
     while(s<=e){
-        long long int sq = mid*mid;
+        double sq = mid*mid;
         if(sq==n){
             return mid;
         }
@@ -18,10 +18,11 @@ long long int sqrt(int n){
         }
         mid = s+(e-s)/2;
     }
+    
     return ans;
 }
 int main(){
-    int n ;
+    double n ;
     cin>>n;
     cout<<sqrt(n);
     return 0;
