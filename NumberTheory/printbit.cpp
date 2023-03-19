@@ -6,9 +6,9 @@ void printBitRepresent(int n){
     //     cout<<((n >> i) & 1);
     // }cout<<endl;
 
-    int i = 31;
+    int i = n;
     while(i--){
-        cout<<" i  " << i << " " << ((n >> i) & 1)<<endl;
+        cout<< ((n >> i) & 1);
     }
 }
 int main() {

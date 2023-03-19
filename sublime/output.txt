@@ -1,1 +1,3 @@
-r i t e s h 
+NO
+YES
+NO
