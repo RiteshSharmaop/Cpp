@@ -1,6 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii
-        Ritesh Sharma      */
+        Jai Mata Dii     */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -43,7 +42,7 @@ long double                 PI =3.14159265358979323846;
 #define eb                  emplace_back
 // #define l                   long long 
 #define MOD                 1000000007 // 998244353
-#define vi                  vector<int>
+// #define vi                  vector<ll>
 #define mp(a, b)            make_pair(a, b)
 #define vpii                vector<pair<int, int> >
 // #define mk(arr, n, type)    type *arr = new type[n];
@@ -115,23 +114,24 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 
 //****************************Template Ends*******************************//
 
-const int N = 1e5 + 7; 
-// const ll N = 1e7;
+// const int N = 1e5 + 7; 
+const ll N = 1e7 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
+// const long  long int  N = 1e7+10;
+
 
 void solve(){
-    int n , od = 0 , ev = 0 ;
+    ll n;
     cin >> n;
-    while(n--){
-        int a;
-        cin >> a;
-        if(a&1) od++;
-        else ev++;
+    vll arr(n);
+    for(ll i = 0 ; i < n ; i++){
+        cin >> arr[i];
     }
-    if(!(od & 1) || od == 0) print("YES");
-    else print("NO");
+    sortarr(arr);
+    ll ans = max(arr[0] * arr[1] , arr[n-1] * arr[n-2]);
+    cout << ans <<endl;
 }
 int main() {
     Lets_Gooo();

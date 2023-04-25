@@ -7,6 +7,7 @@ int main() {
     isPrime[0] = isPrime[1] = false;
     for(int i = 2 ; i < N ; i++){
         if(isPrime[i]){
+            lp[i] = hp[i] = i;
             for(int j = i * 2 ; j < N ; j += i){
                 isPrime[j] = false;
                 hp[j] = i;

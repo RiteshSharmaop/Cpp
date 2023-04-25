@@ -1,6 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii
-        Ritesh Sharma      */
+        Jai Mata Dii     */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -114,50 +113,25 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 // ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
 
 //****************************Template Ends*******************************//
-
-const int N = 1e5 + 7; 
-// const ll N = 1e7;
+// int a = l;
+// const int N = 1e5 + 7; 
+const ll N = 1e6 + 7;
+// const ll N = 1e7 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
 
+// const long  long int  N = 1e7+10;
+
 void solve(){
-    int n , z = 0 , o = 0;
-    cin >> n;
-    vi arr(n);
-    for(int i = 0 ; i < n ; i++){
-        cin >>arr[i];
-        o += arr[i];
-    }
-    z = n - o;
-    ll zero = z , one = o;
-    if(n&1 || o == 0) print(-1);
-    else if(one == n && n == 2)cout<<"-1\n";
-        else if(zero == one)cout<<0<<"\n";
-        else{
-            if(zero > one){
-                 
-                cout<<((zero-one)/2)<<"\n";
-            }
-            else {
-                int dif = (one - zero);
-                int rem = (dif%4);
-                int move = 0;
-                if(rem == 2)move += 2;
-                 move += dif/4;
-                 
-                
-                cout<<move<<"\n";
-                
-            }
-        }    
-// n - > odd 
-// o - > 0
-//  o != 0   z == 0
+    
 }
+
+
 int main() {
     Lets_Gooo();
-    RITESH;      
+    RITESH;   
+    
     long long testCase;
     cin>>testCase;
     while(testCase--){

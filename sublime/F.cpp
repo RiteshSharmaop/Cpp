@@ -1,6 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii
-        Ritesh Sharma      */
+        Jai Mata Dii      */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -122,19 +121,57 @@ const int N = 1e5 + 7;
 // const ll M = 1e9+7;
 
 void solve(){
+    int n,k;
+    cin >> n >> k;
+    vi arr(n) , brr(n);
+    map<int,int>mp,mp1;
+    for(int i = 0 ; i < n ; i++){
+        cin >> arr[i];
+        if(arr[i] >= 10){
+            mp[arr[i]%10]++;
+            mp[arr[i]%100]++;
+        }else mp[arr[i]]++;
+    }
+    bool flag = false;
+    for(int i = 0 ; i < n ; i++){
+        cin >> brr[i];
+        if(brr[i] >= 10){
+            mp1[brr[i]%10]++;
+            mp1[brr[i]%100]++;
+        }else mp1[brr[i]]++;
+        if(brr[i] > arr[i] && brr[i] >= 10 && arr[i] < 10 ) flag = true;
+    }
+    if(flag) {
+        print("NO");
+        return;
+    }
+    string ans = "YES";
+    for(auto i : mp) {
+        if(mp1[i.first] > mp[i.first]) {
+            mp1[i.first]--;
+            mp[i.first]--;
+            k--;
+        }
+
+        if(k == 0) {
+            ans = "NO";
+            break;
+        }
+    }
+    print(ans);
 
 }
 int main() {
     Lets_Gooo();
     RITESH;      
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        // }   
+        }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

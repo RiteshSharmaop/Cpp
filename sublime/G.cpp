@@ -1,6 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii
-        Ritesh Sharma      */
+        Jai Mata Dii      */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -120,8 +119,46 @@ const int N = 1e5 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
+vector<int> findOriginalArray(vector<int>& changed) {
+    int N = 1e6;
+    vector<int> freq(N,0);
+    int n = changed.size();
+    vector<int> ans;
+    if(n&1) return ans;
+    vector<int>p;
+    for(int i = 0 ; i < n ; i++){
+        freq[changed[i]]++;
+    }
+    sort(changed.begin(),changed.end());
+    for(int i = 0 ; i < n ; i++){
+        if(freq[changed[i]] > 0 && freq[changed[i]*2] > 0){
+            // cout << "val " << changed[i] << " " << changed[i]*2 << endl;
+            // cout << "freq " << freq[changed[i]] << " " << freq[changed[i]*2] << endl;
 
+            if(changed[i] == 0 && freq[changed[i]] > 1){
+                ans.emplace_back(changed[i]);
+                freq[changed[i]]--;
+                freq[changed[i]*2]--;
+            }else if(changed[i] != 0){
+                // cout <<  "val " << changed[i] << endl;
+                ans.emplace_back(changed[i]);    
+                freq[changed[i]*2]--;
+                freq[changed[i]]--; 
+            }else return p;
+            // cout << "after freq " << freq[changed[i]] << " " << freq[changed[i]*2] << endl;
+            
+        }
+    }
+        
+    if(ans.size() == n/2  )
+        return ans;
+    else return p;
+}
 void solve(){
+    vi arr = {4,4,16,20,8,8,2,10};
+    vi ans = findOriginalArray(arr);
+    for(auto i : ans) cout << i << " ";
+        cout<<endl;
 
 }
 int main() {

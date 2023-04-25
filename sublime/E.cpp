@@ -1,6 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii
-        Ritesh Sharma      */
+        Jai Mata Dii      */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -115,30 +114,64 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 
 //****************************Template Ends*******************************//
 
-const int N = 1e5 + 7; 
+// const int N = 1e5 + 7; 
 // const ll N = 1e7;
-// const ll N = 1e9+7;
+const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
 
 void solve(){
-    print(1/2);
+    ll n;
+    cin >> n;
+    vi arr(n);
+    map<int,int> mp;
+    for(int i = 0 ; i < n ; i++){
+        cin >> arr[i];
+        mp[arr[i]]++;
+    }
+    int q;
+    cin >> q;
+    // vi qrr(q);
+    // multiset<int> st;
+    sortarr(arr);
+    vi st;
+    vi ans;
+    for(int j = 0 ; j < q ; j++){
+        int q;
+        cin >> q;
+        for(int i = 0 ; i < n ; i++){
+            if(gcd(arr[i] , q) > 1) {
+                ans.emplace_back(arr[i]);
+                arr[i] = N;
+                break;
+            }
+        }
+        // st.emplace_back(q);
+    }
+    
+    int mini = N;
+    for(auto i : arr) mini = min(mini , i);
+    ans.emplace_back(mini);
+    for(auto &i : ans ) cout << i << " ";
+        // cout<<endl;
 }
 int main() {
     Lets_Gooo();
-    RITESH;      
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    RITESH;
+   
+    
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        // }   
+        }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 
-    return 0; 
+    return 0;
 
 }
 

@@ -1,6 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii
-        Ritesh Sharma      */
+        Jai Mata Dii  */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -114,25 +113,44 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 // ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
 
 //****************************Template Ends*******************************//
-
-const int N = 1e5 + 7; 
-// const ll N = 1e7;
-// const ll N = 1e9+7;
+// int a = l;
+// const int N = 1e5 + 7; 
+// const ll N = 1e6 + 7;
+// const ll N = 1e7 + 7;
+const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
 
 // const long  long int  N = 1e7+10;
 
 void solve(){
-    int a,b;
-    cin >> a>>b;
-    if(a > 8 || a * b > 500) print("NO");
-    else print("YES");
-    
+    int n,tt;
+    cin >> n >> tt;
+    vi arr(n),brr(n);
+    for(int i = 0 ; i < n ; i++){
+        cin >> arr[i];
+    }
+    for(int i = 0 ; i < n ; i++){
+        cin >> brr[i];
+    }
+    int ans = -1 , maxi = -1;
+    for(int i = 0 ; i < n ; i++){
+        if(arr[i]+i <= tt){
+            if(brr[i] > maxi){
+                maxi = brr[i];
+                ans = i;
+            }
+        }
+    }
+    if(ans == -1) print(-1);
+    else print(ans+1);
+
 }
+
 int main() {
     Lets_Gooo();
-    RITESH;      
+    RITESH;   
+    
     long long testCase;
     cin>>testCase;
     while(testCase--){

@@ -1,6 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii
-        Ritesh Sharma      */
+        Jai Mata Dii      */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -9,7 +8,7 @@ void Lets_Gooo() {
 #ifndef ONLINE_JUDGE
 
 freopen("input1.txt", "r", stdin);
-freopen("output1.txt", "w", stdout);
+freopen("output.txt", "w", stdout);
 
 #endif // ONLINE_JUDGE 
 }
@@ -120,53 +119,18 @@ const int N = 1e5 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
-void printBinary(ll n , ll a){
-    ll i = a;
-    while(i--){
-        cout << ((n >> i) & 1);
-    }cout<<endl;
-}
-int bieToDec(int n){
-    int num = n;
-    int dec = 0;
-    int flor = 1;
-    int te = num;
-    while(te){
-        int ldD = te%10;
-        te = te / 10;
-        dec += ldD*flor;
-        flor = flor * 2;
-    }
-    return dec;
-}
+
 void solve(){
-    int n;
-    cin >> n;
-    if(n <= 2 ) {
-        print(-1);
-        return;
-    }
-    
-    vector < string > a;
-    for(int i = 1 ; i <= n-1 ; i++){
-        string s = "";
-        int ii = i;
-        for(int j = 0 ; j < n ; j++ ){
-            if(ii > 0) s+= '1';
-            else s += '0';
-            ii--;
-        }
-        a.emplace_back(s);
-    }
-    string k = "";
-    for(int i = 0 ; i < n ; i++){
-        k += '1';
-    }
-    k[n-2] = '0';
-    a.emplace_back(k);
-    for(auto i : a){
-        cout << i << endl;
-    };
+    ll a;
+    cin >> a;
+    ll ans = (a*4);
+    a -= 2;
+    ll n1 = (a*(a+1))/2;
+    a++;
+    ll n2 = (a*(a+1))/2;
+    ans += (n1 + n2 + 1);
+    print(ans);
+
 }
 int main() {
     Lets_Gooo();
