@@ -122,44 +122,26 @@ const int N = 1e5 + 7;
 // const ll M = 1e9+7;
 
 void solve(){
-    ll n;
+    int n;
     cin >> n;
     vi arr(n);
-    ll yash = 0;
-    for(int i = 0 ; i < n ; i++){
-        cin >> arr[i];
-        yash += arr[i];
+    for(int i = 0 ; i < n ; i++) cin >> arr[i];
+    int maxi = *max_element(arr);
+    for( int i = 0 ; i < n ; i++ ) {
+        
     }
-    ll maxi = -1;
-    
-    for(int i = 0 ; i < n ; i++){
-        ll sum = 0;
-        sum += arr[i];
-        maxi = max(maxi , sum);
-        for(int j = i+1 ; j < n ; j++ ){
-            if(i == 0 && j == n-1) continue;
-            else {
-                sum += arr[i];
-            }
-            maxi = max(maxi , sum);
-        }
-    }
-    
-    // print(maxi);
-    if(maxi < yash) print("YES");
-    else print("NO");
 }
 int main() {
     Lets_Gooo();
     RITESH;      
-    long long testCase;
-    cin>>testCase;
-    while(testCase--){
+    // long long testCase;
+    // cin>>testCase;
+    // while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

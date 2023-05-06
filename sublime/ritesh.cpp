@@ -123,7 +123,7 @@ const ll M = 1e9+7;
 const ll INFi = 1e9+7;
 const ll INFll = 1e12+7;
 const ll INFlli = 1e18+7;
-
+/*
 void solve(){
     priority_queue<pair<int, int >> pq;
     for(int i = 0 ; i < 4 ; i++){
@@ -135,6 +135,46 @@ void solve(){
         cout << -pq.top().first << " " << pq.top().second << endl;
         pq.pop();
     }
+}
+*/
+ll Kade(ll j , ll n , vi arr ){
+    ll curr = 0;
+    ll maxi = INT_MIN;
+    for(ll i = j ; i < n ; i++){
+        curr += arr[i];
+        if(curr > maxi) {
+            maxi = curr;
+        }
+        if(curr < 0) curr = 0;
+    }
+    return maxi;
+}
+void solve(){
+    int k = 3;
+    vi arr = {10,5,20,50,25,45,15};
+    auto check = [&](int mid) -> bool {
+        int curr = 1;
+        int sum = 0;
+        for(auto i : arr){
+            if(sum + i > mid){
+                curr++;
+                sum = i;
+            }else sum += i;
+        }
+        return curr <= k;
+
+    };
+    int ans = -1;
+    int s = *max_element(all(arr));
+    int e = accumulate(all(arr) , 0);
+    while(s <= e){
+        int mid = s+(e-s)/2;
+        if(check(mid)){
+            ans = mid;
+            e = mid - 1;
+        }else s = mid + 1;
+    }
+    print(ans);
 }
 int main() {
     Lets_Gooo();

@@ -123,43 +123,36 @@ const ll N = 1e9+7;
 void solve(){
     ll n;
     cin >> n;
-    vi arr(n);
-    map<int,int> mp;
-    for(int i = 0 ; i < n ; i++){
-        cin >> arr[i];
-        mp[arr[i]]++;
-    }
-    int q;
-    cin >> q;
-    // vi qrr(q);
-    // multiset<int> st;
-    sortarr(arr);
-    vi st;
     vi ans;
-    for(int j = 0 ; j < q ; j++){
-        int q;
-        cin >> q;
-        for(int i = 0 ; i < n ; i++){
-            if(gcd(arr[i] , q) > 1) {
-                ans.emplace_back(arr[i]);
-                arr[i] = N;
-                break;
-            }
-        }
-        // st.emplace_back(q);
+    if(n == 1){
+        print(1);
+        return;
+    }else if(n == 2){
+        cout << 2 << " " << 1 << endl;
+        return;
+    }else if(n&1) {
+        print(-1);
+        return;
     }
-    
-    int mini = N;
-    for(auto i : arr) mini = min(mini , i);
-    ans.emplace_back(mini);
-    for(auto &i : ans ) cout << i << " ";
-        // cout<<endl;
+    ll hg = n;
+    ll lw =  2;
+    for(int i = 0 ; i < n-1 ; i++){
+        if(i%4 == 0 || i % 4 == 1) {
+            ans.emplace_back(hg);
+            hg--;
+        }else {
+            ans.emplace_back(lw);
+            lw++;
+        }
+    }
+    ans.emplace_back(1);
+    for(auto &i : ans) cout << i << " ";
+        cout<<endl;
 }
 int main() {
     Lets_Gooo();
     RITESH;
    
-    
     long long testCase;
     cin>>testCase;
     while(testCase--){

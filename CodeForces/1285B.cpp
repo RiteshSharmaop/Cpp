@@ -1,5 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii      */
+        Jai Mata Dii     */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -30,12 +30,13 @@ A=65,Z=90,a=97,z=122
 #define nt                  _int128
 #define ld                  long double
 #define vi                  vector<int>
-#define vll                 vector< long long int>
+#define vs                  vector<string>
 #define vb                  vector<bool>
+#define vll                 vector<long long int>
 #define pii                 pair<int, int>
 #define pll                 pair<long long int, long long int>
-#define ull                 unsigned long long
-long double                 PI =3.14159265358979323846;
+#define ull                 unsigned long long int
+long double                 PI = 3.14159265358979323846;
 #define vvi                 vector<vector<int> >
 // #define vll                 vector<long long>
 #define pb                  push_back
@@ -44,11 +45,11 @@ long double                 PI =3.14159265358979323846;
 #define MOD                 1000000007 // 998244353
 #define vi                  vector<int>
 #define mp(a, b)            make_pair(a, b)
-#define vpii                vector<pair<int, int> >
+#define vpii                vector<pair<int, int>>
 // #define mk(arr, n, type)    type *arr = new type[n];
-#define For(i, a, b)        for (int(i) = (a); (i) < (b); ++(i))
+#define frr(i, a, b)        for (int(i) = (a); (i) < (b); ++(i))
 #define rfor(i, a, b)       for (int(i) = (a)-1; (i) >= (b); --(i))
-#define FORALL(i, a)        for (auto& (i) : (a))
+#define forall(i, a)        for (auto& (i) : (a))
 #define printall(a)         for (auto& (i) : (a)) cout << i << ' '
 #define print(a)            cout << a << '\n'
 #define sortarr(a)          sort((a).begin(), (a).end())
@@ -66,7 +67,7 @@ long double                 PI =3.14159265358979323846;
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define llmax               9223372036854775807
 #define endl                '\n'
-#define debug(n) cout<<(n)<<endl;
+#define debug(n)            cout<<(n)<<endl;
 //..........................................................................
 
 // ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);}
@@ -110,20 +111,62 @@ ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprim
 
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
  
-// ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
-
 //****************************Template Ends*******************************//
 
 // const int N = 1e5 + 7; 
-// const ll N = 1e7;
 const ll N = 1e9+7;
+vector<bool> isPrime(N,1);
+// const ll N = 1e7+7;
+// const ll N = 1e12+7;
 // ll dp[N];
-// const ll M = 1e9+7;
-
+const ll M = 1e9+7;
+const ll INFi = 1e9+7;
+const ll INFll = 1e12+7;
+const ll INFlli = 1e18+7;
+/*
 void solve(){
-
-
-
+    priority_queue<pair<int, int >> pq;
+    for(int i = 0 ; i < 4 ; i++){
+        int a,b;
+        cin >> a >> b;
+        pq.push({-a,b});
+    }
+    while(pq.empty() == false){
+        cout << -pq.top().first << " " << pq.top().second << endl;
+        pq.pop();
+    }
+}
+*/
+ll Kade(ll j , ll n , vi arr ){
+    ll curr = 0;
+    ll maxi = INT_MIN;
+    for(ll i = j ; i < n ; i++){
+        curr += arr[i];
+        if(curr > maxi) {
+            maxi = curr;
+        }
+        if(curr < 0) curr = 0;
+    }
+    return maxi;
+}
+void solve(){
+    ll n;
+    cin >> n;
+    vi arr(n);
+    ll yash = 0;
+    for(ll i = 0 ; i < n ; i++){
+        cin >> arr[i];
+        yash += arr[i];
+    }
+    ll maxi = -1;
+    ll f1 = Kade(0,n-1,arr);
+    ll f2 = Kade(1,n,arr);
+    maxi = max(f1,f2);
+    // print(maxi);
+    // print(f2);
+    // print(yash);
+    if(maxi < yash) print("YES");
+    else print("NO");
 }
 int main() {
     Lets_Gooo();

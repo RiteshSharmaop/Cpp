@@ -122,29 +122,38 @@ const ll N = 1e9+7;
 // const ll M = 1e9+7;
 
 // const long  long int  N = 1e7+10;
-
-void solve(){
-    int n,tt;
-    cin >> n >> tt;
-    vi arr(n),brr(n);
+bool check(vi &ans,ll n,ll k){
+    int cnt = 0;
     for(int i = 0 ; i < n ; i++){
-        cin >> arr[i];
-    }
-    for(int i = 0 ; i < n ; i++){
-        cin >> brr[i];
-    }
-    int ans = -1 , maxi = -1;
-    for(int i = 0 ; i < n ; i++){
-        if(arr[i]+i <= tt){
-            if(brr[i] > maxi){
-                maxi = brr[i];
-                ans = i;
-            }
+        for(int j = i+1 ; j < n ; j++){
+            if(ans[i]*ans[j] == 1) cnt++;
         }
     }
-    if(ans == -1) print(-1);
-    else print(ans+1);
-
+    if(k == cnt) return true;
+    else return false;
+}
+void solve(){
+    int n;
+    cin >> n;
+    // vi arr(n);
+    vi pref(n);
+    // vi fre;
+        ll ans = 0,sm = 0 , x = -1;
+    map<int,int> fre;
+    for(int i = 0 ; i < n ; i++){
+        cin >> pref[i];
+        fre[pref[i]]++;
+    }
+    if(sz(fre) == n) cout << (n * (n-1)) / 2 << endl;
+    else {
+        for(int i = 0 ; i < n ; i++){
+            x = n-fre[pref[i]] - sm;
+            ans = ans+x;
+            fre[pref[i]]--;
+            sm++;
+        }
+    cout << ans <<endl;
+    }
 }
 
 int main() {

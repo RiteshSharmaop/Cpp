@@ -114,24 +114,30 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 
 //****************************Template Ends*******************************//
 
-// const int N = 1e5 + 7; 
-const ll N = 1e7 + 7;
+const int N = 1e6 ; 
+// const ll N = 1e7 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
 // const long  long int  N = 1e7+10;
 
-
 void solve(){
-    ll n;
-    cin >> n;
-    vll arr(n);
-    for(ll i = 0 ; i < n ; i++){
+    ll n,k;
+    cin >> n >> k;
+    vi arr(n);
+    int a = 0,ind = -1;;
+    int mini = INT_MAX;
+    for(int i = 0 ; i < n ; i++) 
         cin >> arr[i];
+    for(int i = 0 ; i < n ; i++){
+        int x = abs(i-(arr[i]-1));
+        if(x%k != 0) {
+            a++;
+        }   
     }
-    sortarr(arr);
-    ll ans = max(arr[0] * arr[1] , arr[n-1] * arr[n-2]);
-    cout << ans <<endl;
+    if(a == 0) print(0);
+    else if(a <= 2) print(1);
+    else print(-1);
 }
 int main() {
     Lets_Gooo();
