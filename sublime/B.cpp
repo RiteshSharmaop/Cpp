@@ -122,27 +122,35 @@ const int N = 1e6 ;
 // const long  long int  N = 1e7+10;
 
 void solve(){
-    ll n,k;
-    cin >> n >> k;
-    vi arr(n);
-    int a = 0,ind = -1;;
-    int mini = INT_MAX;
-    for(int i = 0 ; i < n ; i++) 
-        cin >> arr[i];
+    ll n;
+    cin >> n;
+    string c,ch;
+    cin >> c >> ch;
+    ll cc = 0 , chh = 0 ,d = 0;
     for(int i = 0 ; i < n ; i++){
-        int x = abs(i-(arr[i]-1));
-        if(x%k != 0) {
-            a++;
-        }   
+        char a = c[i] , b = ch[i];
+        if(c[i] == ch[i]){
+            d++;
+        }else if((a == 'R' && b == 'S') || (a=='S' && b == 'P') || (a == 'P' && b == 'R') ) {
+            cc++;
+        }else chh++;
     }
-    if(a == 0) print(0);
-    else if(a <= 2) print(1);
-    else print(-1);
+    // cout << cc << " " << chh << endl;
+    if(cc == chh) {
+        cout << 1 << endl;
+    }else if(cc > chh){
+        cout << 0 << endl;
+    }else {
+        ll ans = abs(cc-chh);
+        ans /= 2;
+        ans++;
+        print(ans);
+    }
 }
 int main() {
     Lets_Gooo();
     RITESH;      
-    long long testCase;
+    long long int testCase;
     cin>>testCase;
     while(testCase--){
     // if (solve())cout<<"YES"<<endl;

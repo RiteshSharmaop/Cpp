@@ -124,10 +124,24 @@ const ll N = 1e6 + 7;
 // const long  long int  N = 1e7+10;
 
 void solve(){
+    ll n,k;
+    cin >> n >> k;
+    ll ans = -1 ,ind;
+    for(int i = 0 ; i <= n/2 ; i++ ){
+        ll answer = ((n-i) % k)*((n-(n-i))%k);
+        ll answe = (i % k)*((n-i)%k);
+        if(answe > ans) {
+            ans = answe;
+            ind = i;
+        }
+        if(answer > answe){
+            ans = answer;
+            ind = n-i;
+        }
+    }    
     
+    print(ind);
 }
-
-
 int main() {
     Lets_Gooo();
     RITESH;   

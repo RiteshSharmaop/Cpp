@@ -121,14 +121,26 @@ const ll N = 1e9+7;
 // const ll M = 1e9+7;
 
 void solve(){
-
-
-
+    ll n;
+    cin >> n;
+    vi arr;
+    for(int i = 0 ; i <= n/2 ; i++){
+        arr.push_back(i+1);
+        arr.emplace_back(n-i);
+        // cout << i+1 << " " << n-i << " ";
+    }
+    if(n & 1) {
+        arr.pop_back();   
+    }
+    for(int i = 0 ; i <n ; i++){
+        cout << arr[i] << " ";
+    }
+        cout << endl;
 }
 int main() {
     Lets_Gooo();
     RITESH;      
-    long long testCase;
+    long long testCase = 1;
     cin>>testCase;
     while(testCase--){
     // if (solve())cout<<"YES"<<endl;

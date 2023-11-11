@@ -126,7 +126,7 @@ const ll INFlli = 1e18+7;
 /*
 void solve(){
     priority_queue<pair<int, int >> pq;
-    for(int i = 0 ; i < 4 ; i++){
+    for(int i = 0 ; i < 4 ]]; i++){
         int a,b;
         cin >> a >> b;
         pq.push({-a,b});
@@ -137,45 +137,75 @@ void solve(){
     }
 }
 */
-ll Kade(ll j , ll n , vi arr ){
-    ll curr = 0;
-    ll maxi = INT_MIN;
-    for(ll i = j ; i < n ; i++){
-        curr += arr[i];
-        if(curr > maxi) {
-            maxi = curr;
-        }
-        if(curr < 0) curr = 0;
-    }
-    return maxi;
-}
-void solve(){
-    int k = 3;
-    vi arr = {10,5,20,50,25,45,15};
-    auto check = [&](int mid) -> bool {
-        int curr = 1;
-        int sum = 0;
-        for(auto i : arr){
-            if(sum + i > mid){
-                curr++;
-                sum = i;
-            }else sum += i;
-        }
-        return curr <= k;
 
-    };
-    int ans = -1;
-    int s = *max_element(all(arr));
-    int e = accumulate(all(arr) , 0);
-    while(s <= e){
-        int mid = s+(e-s)/2;
-        if(check(mid)){
-            ans = mid;
-            e = mid - 1;
-        }else s = mid + 1;
+vector<int> nextSmallest(vector<int> &arr , stack<int> st){
+    // 2 1 4 1 1 -1 -1
+    // 2 1 4 1 1 7 6
+    vector<int> ans(sz(arr));
+    for( int i = sz(arr) ; i >= 0 ; i-- ) {
+        while(st.top() >= arr[i]) {
+            st.pop();
+        }
+        if(st.top() == -1) ans[i] = sz(arr);
+        else ans[i] = st.top();
+
+        st.push(arr[i]);
+
     }
-    print(ans);
+    return ans;
+
 }
+
+
+vector<int> prevSmallest(vector<int> &arr , stack<int> st){
+    // -1 -1 2 2 4 -1 1
+    vector<int> ans(sz(arr));
+    for( int i = 0 ; i < sz(arr) ; i++ ) {
+        while(st.top() >= arr[i]) {
+            st.pop();
+        }
+        ans[i] = st.top();
+
+        st.push(arr[i]);
+
+    }
+    return ans;
+
+}
+int largestHistogram(vector<int> &ne ,vector<int> &pe ){
+    // 2 1 4 1 1 7 6
+    // -1 -1 2 2 4 -1 1
+    int ans = -1;
+    for(int i = 0 ; i < sz(ne) ; i++){
+        int len = ne[i];
+        int wid = ne[i] - pe[i] - 1;
+        ans = max(ans,len*wid);
+    }
+    return ans;
+}
+void solve() {
+    queue<int> q;
+    q.push(3);
+    q.push(4);
+    q.push(5);
+    q.push(6);
+    cout<< q.front()<<" " << q.back()<< endl;
+    q.pop_back();
+    // print(a);
+    print(q.front());
+    // vector<int> arr = {6 ,2 ,5 ,4 ,5 ,1 ,6};
+
+    // stack<int> st;
+    // st.push(-1);
+
+    // vector<int> ne = nextSmallest(arr,st);
+    // vector<int> pe = prevSmallest(arr,st);
+    // int answer = largestHistogram(ne,pe);
+    // // for(auto &i : pe) cout << i << " ";
+    // print(answer);
+    cout<<endl; 
+}
+
 int main() {
     Lets_Gooo();
     RITESH;      
@@ -194,4 +224,104 @@ int main() {
 
 }
 
+/*
 
+void solve(){
+    
+    
+    auto ok = [&](double mid) -> bool {
+        int cnt = 0;
+        for(auto i : arr){
+            int op = i / mid;
+            // if(op >= k-cnt) return true;
+            // cout << "op i: " << op << endl;
+            cnt += op;
+        }
+        // cout << "\n";
+        // print(cnt);
+        return cnt >= k;
+    };
+    double s = 0;
+    double e = *min_element(all(arr));
+    double ans = -1;
+    while(s < e){
+        double mid = s + (e-s)/2;
+        // cout << "mid : " << mid << endl << endl;
+        if(ok(mid)) {
+            // cout << "ans " << mid << endl << endl;
+            ans = max(mid , ans);
+            s = mid+1 ;
+        }else {
+            e = mid-1;
+            // cout << "rf  " << mid << endl;
+        }
+    }
+    print(ans);
+}
+
+// Working on
+
+void solve() {
+    string s;
+    cin >> s;
+    vi freq(26,0);
+    for(int i = 0 ; i < sz(s) ; i++){
+        freq[s[i]-'a']++;
+    }
+    int ind = -1;
+    bool flag = true;
+    char c = '1', cc = '1';
+    for(int i = 0 ; i < 26 ; i++){
+        if(freq[i] >= 2 ) {
+            flag = false;
+            ind = i; 
+            if(c == '1')c = 'a' + i;
+            else {
+                cc = 'a'+i;
+                break;  
+            } 
+        }
+    }
+    // print(c);
+    string ans = "";
+    flag = false;
+    for(int i = 0 ; i < sz(s) ; i++){
+        if(s[i] == c){
+            for(int j = i ; j < sz(s); j++){
+                ans += s[j];
+                if(s[j] == c && j != i) break;
+            }
+            if(sz(ans) + 1 == sz(s)) break;
+            else {
+                cout << 1 << " " << sz(ans)+1 << endl;
+                // print(ans);
+                return;
+            }
+        }
+    }
+    ans = "";
+    flag = false;
+    for(int i = 0 ; i < sz(s) ; i++){
+        if(s[i] == cc){
+            for(int j = i ; j < sz(s); j++){
+                ans += s[j];
+                if(s[j] == cc && j != i) break;
+            }
+            if(sz(ans) + 1 == sz(s)) break;
+            else {
+                cout << 1 << " " << sz(ans)+1 << endl;
+                // print(ans);
+                return;
+            }
+        }
+    }
+    // print("okay");
+    // if(flag) return;
+    // else {
+    //     for(int i = 0 ; i < sz(s) ; i++){
+
+    //     }
+    // }
+}
+
+*/

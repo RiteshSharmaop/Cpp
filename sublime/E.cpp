@@ -121,46 +121,38 @@ const ll N = 1e9+7;
 // const ll M = 1e9+7;
 
 void solve(){
-    ll n;
-    cin >> n;
-    vi ans;
-    if(n == 1){
-        print(1);
-        return;
-    }else if(n == 2){
-        cout << 2 << " " << 1 << endl;
-        return;
-    }else if(n&1) {
-        print(-1);
-        return;
-    }
-    ll hg = n;
-    ll lw =  2;
-    for(int i = 0 ; i < n-1 ; i++){
-        if(i%4 == 0 || i % 4 == 1) {
-            ans.emplace_back(hg);
-            hg--;
-        }else {
-            ans.emplace_back(lw);
-            lw++;
+    string s,k;
+    cin >> s >> k;
+    ll cnt = 0;
+    ll freqq = 0;
+    map<ll,ll> mp;
+    for(auto i : k) 
+        freqq += i;
+    for(ll i = 0 ; i < sz(s)-sz(k) ; i++){
+        ll freq = 0;
+        string a = "";
+        for(ll j = i ; j < i+sz(k) ; j++){
+            freq += s[j];
+            a += s[j];
         }
+        // print(a);
+        mp[freq]++;
     }
-    ans.emplace_back(1);
-    for(auto &i : ans) cout << i << " ";
-        cout<<endl;
+    // for(auto i : mp ) cout << i.first <<endl;
+    print(mp[freqq]);
 }
 int main() {
     Lets_Gooo();
     RITESH;
    
-    long long testCase;
-    cin>>testCase;
-    while(testCase--){
+    // long long testCase;
+    // cin>>testCase;
+    // while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

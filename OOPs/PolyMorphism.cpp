@@ -2,7 +2,7 @@
 using namespace std;
 
 class Math{
-
+    public:
     int age( int a , int b){
         return a+b;
     }
@@ -17,13 +17,15 @@ class Math{
     // overloading type of Parameter 
     // Change datatype of Parameter
     int age(int a , float b){
-        return a+b;
+        return a-b;
     }
 };
 
 int main() {
     
     Math a;
+    int aa = a.age(5,6);
+    cout << aa;
 
     return 0;
 }

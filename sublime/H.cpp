@@ -120,16 +120,25 @@ const int N = 1e5 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
-
-void solve(){
-    int n;
-    cin >> n;
-    vi arr(n);
-    for(int i = 0 ; i < n ; i++) cin >> arr[i];
-    int maxi = *max_element(arr);
-    for( int i = 0 ; i < n ; i++ ) {
-        
+int lengthOfLongestSubstring(string s) {
+    int ans = 0;
+    for(int i = 0 ; i < s.length() ; i++){
+        map<int,int> mp;
+        for(int j = i ; j < s.length() ; j++ ) {
+            mp[s[j]]++;
+            if(mp[s[j]] == 2) {
+                int mapSize = mp.size();
+                ans = max(ans,mapSize);
+                break;
+            }
+        }
     }
+    return ans;
+}
+void solve(){
+    string s;
+    cin >> s;
+    cout << lengthOfLongestSubstring(s);   
 }
 int main() {
     Lets_Gooo();

@@ -66,11 +66,11 @@ long double                 PI =3.14159265358979323846;
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define llmax               9223372036854775807
 #define endl                '\n'
-#define debug(n) cout<<(n)<<endl;
+#define debug(n)            cout<<(n)<<endl;
+#define INF                 4e18
 //..........................................................................
 
 // ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);}
-
 
 long long int PowR(ll a , ll b){if( b == 0 ) return 1;long rec = PowR(a,b/2);if(b&1){    return a * rec * rec;}else return rec * rec;}
 
@@ -122,44 +122,33 @@ const ll N = 1e9+7;
 // const ll M = 1e9+7;
 
 // const long  long int  N = 1e7+10;
-bool check(vi &ans,ll n,ll k){
-    int cnt = 0;
-    for(int i = 0 ; i < n ; i++){
-        for(int j = i+1 ; j < n ; j++){
-            if(ans[i]*ans[j] == 1) cnt++;
-        }
-    }
-    if(k == cnt) return true;
-    else return false;
-}
-void solve(){
-    int n;
-    cin >> n;
-    // vi arr(n);
-    vi pref(n);
-    // vi fre;
-        ll ans = 0,sm = 0 , x = -1;
-    map<int,int> fre;
-    for(int i = 0 ; i < n ; i++){
-        cin >> pref[i];
-        fre[pref[i]]++;
-    }
-    if(sz(fre) == n) cout << (n * (n-1)) / 2 << endl;
-    else {
-        for(int i = 0 ; i < n ; i++){
-            x = n-fre[pref[i]] - sm;
-            ans = ans+x;
-            fre[pref[i]]--;
-            sm++;
-        }
-    cout << ans <<endl;
-    }
+// int check(int a , vvi arr, int n){
+//     // row
+//     for(int i = 0 ; i < n ; i++){
+//         if(arr[a][i] == 1) return -1;
+//     }
+//     // col
+//     int cnt = 0;
+//     for(int i = 0 ; i < n ; i++){
+//         if(arr[i][a] == 0) cnt++;
+//         if(cnt == 2) return -1;
+//     }
+//     return a;
+// }
+
+void solve() {
+    ll x,y,z;
+    cin >> x >> y >> z;
+    ll t = x*y;
+    ll op = z*24;
+    op *= 60;
+    if(t <= op) cout << "YES" << endl;
+    else cout << "NO" << endl;
 }
 
 int main() {
     Lets_Gooo();
     RITESH;   
-    
     long long testCase;
     cin>>testCase;
     while(testCase--){

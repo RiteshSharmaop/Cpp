@@ -12,11 +12,7 @@ void solve(vector<int> &v , stack<int> &st){
 }
 
 void SortedInsert(stack<int> &st , int topElement){
-    if(st.empty()){
-        st.push(topElement);
-        return;
-    }
-    if(st.top()<=topElement){
+    if(st.empty() || st.top()<=topElement){
         st.push(topElement);
         return;
     }

@@ -120,58 +120,65 @@ const int N = 1e5 + 7;
 // ll dp[N];
 // const ll M = 1e9+7;
 
-void solve(){
-    int n,k;
-    cin >> n >> k;
-    vi arr(n) , brr(n);
-    map<int,int>mp,mp1;
-    for(int i = 0 ; i < n ; i++){
-        cin >> arr[i];
-        if(arr[i] >= 10){
-            mp[arr[i]%10]++;
-            mp[arr[i]%100]++;
-        }else mp[arr[i]]++;
-    }
-    bool flag = false;
-    for(int i = 0 ; i < n ; i++){
-        cin >> brr[i];
-        if(brr[i] >= 10){
-            mp1[brr[i]%10]++;
-            mp1[brr[i]%100]++;
-        }else mp1[brr[i]]++;
-        if(brr[i] > arr[i] && brr[i] >= 10 && arr[i] < 10 ) flag = true;
-    }
-    if(flag) {
-        print("NO");
-        return;
-    }
-    string ans = "YES";
-    for(auto i : mp) {
-        if(mp1[i.first] > mp[i.first]) {
-            mp1[i.first]--;
-            mp[i.first]--;
-            k--;
+ll check(string s , string k){
+    ll cnt = 0;
+    for(int i = 0 ; i < sz(s) ; i++){
+        if(s.substr(i,sz(k)) == k){
+            cnt++;
         }
+    }
+    return cnt;
+}
 
-        if(k == 0) {
-            ans = "NO";
-            break;
+ll check2(string s , string k) {
+    ll cnt = 0;
+    ll totk = 0;
+    for(auto i : k) totk += i;
+
+    for(int i = 0 ; i < sz(s) ; i++){
+        ll tot = 0;
+        string newString = s.substr(i,sz(k));
+
+        for(auto j : newString){
+            tot += j;
+        }
+        if(tot == totk) {
+            cnt++;
+            print(newString);
         }
     }
-    print(ans);
+    return cnt;
+}
+ll orderOfN(string s , string k){
+    ll cnt = 0;
+    for(int i = 0)
+}
+ll final(string s , string k){
+    ll totK = 0;
+    for(int i = 0 ; i < n ; i++) {
+        totK = (totK * 31 +(s[i] - 'a' +1)) %  MOD;
+    } 
+    for(int i = 0 ; i < n ; i++){
+        
+    }
+}
+void solve(){
+    string s,k;
+    cin >> s >> k;
+    cout << check2(s,k);
 
 }
 int main() {
     Lets_Gooo();
     RITESH;      
-    long long testCase;
-    cin>>testCase;
-    while(testCase--){
+    // long long testCase;
+    // cin>>testCase;
+    // while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 
