@@ -1,3 +1,15 @@
+Xor : 3
+Xor^arr[i] : 1 1
+Xor^arr[i] : 7 1
+Xor^arr[i] : 0 0
+Xor^arr[i] : 5 0
 0
-2
-1
+Xor : 0
+0
+Xor : 31
+Xor^arr[i] : 30 30
+Xor^arr[i] : 28 28
+Xor^arr[i] : 26 26
+Xor^arr[i] : 14 14
+Xor^arr[i] : 22 14
+14

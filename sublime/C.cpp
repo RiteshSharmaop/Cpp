@@ -121,21 +121,28 @@ const ll N = 1e9+7;
 // const ll M = 1e9+7;
 
 void solve(){
-    ll n;
+    ll n ;
+    int Xor = 0;
     cin >> n;
-    vi arr;
-    for(int i = 0 ; i <= n/2 ; i++){
-        arr.push_back(i+1);
-        arr.emplace_back(n-i);
-        // cout << i+1 << " " << n-i << " ";
+    vi arr(n);
+    for(int i = 0 ; i < n ; i++){
+        cin >> arr[i];    
+        Xor ^= arr[i];
     }
-    if(n & 1) {
-        arr.pop_back();   
+    if(Xor == 0) {
+        cout << -1 << endl;
+        return;
     }
-    for(int i = 0 ; i <n ; i++){
-        cout << arr[i] << " ";
+    int mini = INT_MAX;
+    for(int i = 0 ; i < n ; i++){
+        Xor = 0;
+        for(int j = 0 ; j < n ; j++){
+            if(i == j) continue;
+            Xor ^= arr[j];
+        }
+        mini = min(Xor,mini);
     }
-        cout << endl;
+    print(mini);
 }
 int main() {
     Lets_Gooo();

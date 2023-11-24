@@ -124,27 +124,24 @@ const int N = 1e6 ;
 void solve(){
     ll n;
     cin >> n;
-    string c,ch;
-    cin >> c >> ch;
-    ll cc = 0 , chh = 0 ,d = 0;
-    for(int i = 0 ; i < n ; i++){
-        char a = c[i] , b = ch[i];
-        if(c[i] == ch[i]){
-            d++;
-        }else if((a == 'R' && b == 'S') || (a=='S' && b == 'P') || (a == 'P' && b == 'R') ) {
-            cc++;
-        }else chh++;
+    vi arr(n);
+    int Xor = 0;
+    ll odd = 0,eve = 0, maxi = -1,maxie = -1;
+    for(auto &i : arr){
+        cin >> i;
+        Xor ^= i;
     }
-    // cout << cc << " " << chh << endl;
-    if(cc == chh) {
-        cout << 1 << endl;
-    }else if(cc > chh){
+    cout << "Xor : " << Xor << endl;
+    if(Xor == 0) {
         cout << 0 << endl;
-    }else {
-        ll ans = abs(cc-chh);
-        ans /= 2;
-        ans++;
-        print(ans);
+    }else{
+        int answer = Xor;
+        for(int i = 0 ; i < n ; i++){
+            answer = min(answer , Xor^arr[i]);
+            ll a = Xor ^ arr[i];
+            cout << "Xor^arr[i] : " <<a << " " << answer  << endl;
+        }
+        print(answer);
     }
 }
 int main() {
