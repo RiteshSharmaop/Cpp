@@ -137,8 +137,12 @@ int lengthOfLongestSubstring(string s) {
 }
 void solve(){
     string s;
-    cin >> s;
-    cout << lengthOfLongestSubstring(s);   
+    // cin >> s;
+    // cout << lengthOfLongestSubstring(s);   
+    vector<int> v {5,10,30,59,60};
+    int pos = 2;
+    v.insert(v.begin()+pos , 100);
+    cout << sz(v) << " " << v[3]; 
 }
 int main() {
     Lets_Gooo();

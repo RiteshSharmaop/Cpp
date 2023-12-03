@@ -136,11 +136,20 @@ const ll N = 1e9+7;
 //     return a;
 // }
 
-void solve() {
-    ll x,y,z;
-    cin >> x >> y;
-    cout << maxx(x,y) * 2 -1 <<endl;
+
+void solve(){
+    ll x,n;
+    cin >> x >> n;
+    ll tot = x*100;
+    ll a = tot - n;
+    if(a <= 0) cout << 0 <<endl;
+    else {
+        if(%100 == 0 ) cout << n/100 <<endl;
+        else cout << (n/100)+1 <<endl; 
+    }
+
 }
+
 
 int main() {
     Lets_Gooo();
@@ -161,32 +170,7 @@ int main() {
 }
 
 
-/*      Jai Ganesh Ji
-        Jai Mata Dii     */
-#include<bits/stdc++.h>
-using namespace std;
-
-void Lets_Gooo() {
-// fast_io;
-#ifndef ONLINE_JUDGE
-
-freopen("input1.txt", "r", stdin);
-freopen("output.txt", "w", stdout);
-
-#endif // ONLINE_JUDGE 
-}
-
-/* ascii value
-A=65,Z=90,a=97,z=122
-*/
- 
-// Techniques :
-// divide into cases, brute force, pattern finding
-// sort, greedy, binary search, two pointer
-// transform into graph
-
-
-
+/*
 #define RITESH              ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define ll                  long long int
 // #define mp                  make_pair
@@ -285,34 +269,14 @@ const int N = 1e6 ;
 // const long  long int  N = 1e7+10;
 
 void solve(){
-    ll n;
-    cin >> n;
-    vi arr(n);
-    int Xor = 0;
-    ll odd = 0, maxi = -1;
-    for(auto &i : arr){
-        cin >> i;
-        Xor ^= i;
-        if(i&1) {
-            odd++;
-            maxi = maxx(i,maxi);
-        }
-    }
-    if(Xor == 0) {
-        cout << 0 << endl;
-    }else{
-        Xor = 0;
-        bool fz = true;
-        int mini = INT_MAX;
-        for(int i = 0 ; i < n ; i++){
-            if(maxi == arr[i] && fz){
-                fz = false;
-                continue;
-            }else {
-                Xor ^= arr[i];
-            }
-        }
-        print(Xor);
+    ll x,n;
+    cin >> x >> n;
+    ll tot = x*100;
+    ll a = tot - n;
+    if(a <= 0) cout << 0 <<endl;
+    else {
+        if(%100 == 0 ) cout << n/100 <<endl;
+        else cout << (n/100)+1 <<endl; 
     }
 
 }
@@ -336,3 +300,4 @@ int main() {
 
 
 
+*/

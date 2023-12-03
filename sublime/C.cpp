@@ -121,28 +121,23 @@ const ll N = 1e9+7;
 // const ll M = 1e9+7;
 
 void solve(){
-    ll n ;
-    int Xor = 0;
-    cin >> n;
-    vi arr(n);
-    for(int i = 0 ; i < n ; i++){
-        cin >> arr[i];    
-        Xor ^= arr[i];
+    ll n,k,boys;
+    cin >> n >> boys >> k ;
+
+    ll girl = (n-boys);
+
+    // ll boyg = boys / k;
+    if(girl == 0) {
+        ll ans = boys % k;
+        cout <<ans<<endl;
+
+    }else {
+        ll rem = girl % k;
+        ll remb = boys % k;
+
+        ll dance = max(rem, remb ) - min(rem,remb);
+        cout <<  dance <<endl;
     }
-    if(Xor == 0) {
-        cout << -1 << endl;
-        return;
-    }
-    int mini = INT_MAX;
-    for(int i = 0 ; i < n ; i++){
-        Xor = 0;
-        for(int j = 0 ; j < n ; j++){
-            if(i == j) continue;
-            Xor ^= arr[j];
-        }
-        mini = min(Xor,mini);
-    }
-    print(mini);
 }
 int main() {
     Lets_Gooo();

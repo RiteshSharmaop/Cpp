@@ -1,0 +1,2 @@
+e || right > size) 
+            //     return;
