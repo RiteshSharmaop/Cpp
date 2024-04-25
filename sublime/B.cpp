@@ -122,44 +122,39 @@ const int N = 1e6 ;
 // const long  long int  N = 1e7+10;
 
 
+
 void solve(){
-    ll f , s;
-    cin >> f >> s;
-    if(f%s == 0) print(0);
-    else {
-        ll cnt = 0 , cnt2 = 0;
-        ll c = f , d = s , ans = 0 , ans2 = 0;
-        while(f%s !=0 ){
-            s--;
-            f++;
-            cnt++;
+    ll n ,a , b;
+    cin >> n >> a >> b;
+    if(a&1) a++;
+    if(b&1) b++;
+    int k = a/b;
+    int j = k;
+    // cout << a << b << endl;
+    for(int i = 0 ; i < n ; i++){
+        if(j == 0 && b >= 1){
+            cout << 'B';
+            b--;
+            j = k;
+        }else {
+            cout << 'R';
+            j--;
         }
-        if(s == 0) cnt = INT_MAX;
-        ans = cnt; cnt = 0;
-        while(c%d != 0){
-            c--;
-            d++;
-            cnt2++;
-        }
-        ans = min(ans ,cnt2);
-        print(ans);
-
-    }
+    }cout<<endl;
 }
-
 int main() {
     Lets_Gooo();
     RITESH;      
     long long int testCase;
-    // cin>>testCase;
-    print(sz(char));
+    cin>>testCase;
+    // print(sz(char));
     // cout << 10 % 2 << " " << 2 % 10 <<"\n";
-    // while(testCase--){
+    while(testCase--){
     // // if (solve())cout<<"YES"<<endl;
     //     // else cout<<"NO"<<endl;
-    //     solve();
+        solve();
     //     // cout<<abs(-6);
-    //     }   
+        }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

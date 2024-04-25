@@ -24,6 +24,10 @@ class Stack{
     }
     
     void pop(){
+        if(top==-1) {
+            cout << "Under Flow!! " <<endl;
+            return;
+        }
         top--;
     }
     int getSize(){
@@ -46,7 +50,7 @@ int main() {
     // we use new keyward and new return pointer
     // so st is pointer
     Stack *st = new Stack(5);
-
+    st->pop();
     // instrtion
     st->push(3);
     st->push(4); 

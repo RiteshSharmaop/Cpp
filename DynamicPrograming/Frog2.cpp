@@ -1,5 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii      */
+        Jai Mata Dii  */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -15,6 +15,7 @@ freopen("output.txt", "w", stdout);
 
 /* ascii value
 A=65,Z=90,a=97,z=122
+0 = 48 , 9 = 57
 */
  
 // Techniques :
@@ -66,11 +67,11 @@ long double                 PI =3.14159265358979323846;
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define llmax               9223372036854775807
 #define endl                '\n'
-#define debug(n) cout<<(n)<<endl;
+#define debug(n)            cout<<(n)<<endl;
+#define INF                 4e18
 //..........................................................................
 
 // ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);}
-
 
 long long int PowR(ll a , ll b){if( b == 0 ) return 1;long rec = PowR(a,b/2);if(b&1){    return a * rec * rec;}else return rec * rec;}
 
@@ -113,55 +114,96 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 // ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
 
 //****************************Template Ends*******************************//
-
-const int N = 1e5 + 7; 
-// const ll N = 1e7;
+// int a = l;
+// const int N = 1e5 + 7; 
+// const ll N = 1e6 + 7;
+const ll N = 1e7 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
 
-int mxWeg(vi &legs){
-    sortarr(legs);
-    int n = sz(legs);
-    int mWe = 0; 
-    for(int i = 1 ; i < (1 << n) ; i++){
-        int sm = 0;
-        for(int j = 0 ; j < n ; j++){
-            if(i & (1<<j)){
-                sm += legs[j];
-            }
-        }
-        mWe = max(mWe , sm);
-    }
-    return mWe;
-}
-void solve(){
-    int x;
-    cin >> x;
-    vi legs(x);
-    for(auto &k : legs){
-        cin >> k;
-    }
-    int ans = mxWeg(legs);
-    print(ans);
+/*
+    String hashing 
+Note: it can exceed int size
+i = 0 -> n-1 ==> E (char[i]*31^i)
 
+        ** USE **
+
+h(s) = E  ((s[i]-'a'+1)*31^i)%M
+M = prime for Less Collision
+Code :  h = 0
+        h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
+*/
+
+
+// const long  long int  N = 1e7+10;
+// int check(int a , vvi arr, int n){
+//     // row
+//     for(int i = 0 ; i < n ; i++){
+//         if(arr[a][i] == 1) return -1;
+//     }
+//     // col
+//     int cnt = 0;
+//     for(int i = 0 ; i < n ; i++){
+//         if(arr[i][a] == 0) cnt++;
+//         if(cnt == 2) return -1;
+//     }
+//     return a;
+// }
+
+
+// rec
+// T.C =  O(~ 2^n * k)  approx
+int minCostRec(int n, vi arr, int k){
+    if(n == 0) return n;
+
+    int cost = 1e9;
+    for(int i = 1 ; i <= k ; ++i){
+        if(n-i >= 0)
+            cost = min(cost , minCostRec(n-i , arr , 2) + abs(arr[n-i] - arr[n]));
+    }
+    return cost;
 }
+
+// dp
+// T.C = N*k
+int dp[N];
+int minCost(int n, vi arr, int k){
+    if(n == 0) return n;
+    if(dp[n] != -1) return dp[n];
+
+    int cost = 1e9;
+    for(int i = 1 ; i <= k ; ++i){
+        if(n-i >= 0)
+            cost = min(cost , minCost(n-i , arr , 2) + abs(arr[n-i] - arr[n]));
+    }
+
+    return dp[n] = cost;
+}
+
+void solve(){
+    memset(dp , -1 , sizeof(dp));
+    vector<int> arr = {10 , 30 , 40 , 50 ,20};
+    int ans = minCost(4 , arr, 3);
+    // n arr kx
+    print(ans);
+}
+
 int main() {
     Lets_Gooo();
-    RITESH;      
-    long long testCase;
-    cin>>testCase;
-    while(testCase--){
+    RITESH;   
+    // ll testCase;
+    // cin >> testCase;
+    // while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 
     return 0; 
 
 }
-
 

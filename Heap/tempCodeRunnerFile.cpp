@@ -1,2 +1,2 @@
-e || right > size) 
-            //     return;
+maxHeap.delHeap();
+    maxHeap.printHeap();

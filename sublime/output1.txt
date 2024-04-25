@@ -1,8 +1,2 @@
-wait
-NO
-YES
-wait
-wait
-wait
-wait
-wait
+ans : 2
+ans : 2

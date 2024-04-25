@@ -42,21 +42,23 @@ class Heap{
     
         int ind = 1;
         // int ans = -1;
+
         while(ind <= size) {
         // cout << "Del Heap" <<endl;
+            int largest = ind;
             int left = 2*ind;
             int right = 2*ind+1;
-            if(left <= size && arr[left] > arr[ind]) {
-                ind = left;
+
+            if(left <= size && arr[left] > arr[largest]) {
+                largest = left;
             }
-            if(right <= size && arr[right] > arr[ind]) {
-                ind = right;
+            if(right <= size && arr[right] > arr[largest]) {
+                largest = right;
             }
-            if(left > size || right > size) 
-                return;
             
-            swap(arr[ind] , arr[ind/2]);
-            // printHeap();
+            if(largest != ind)
+                swap(arr[largest] , arr[ind]);
+            else return;
         }
         // swap(arr[ind],arr[ind/2]);
     }
@@ -71,6 +73,25 @@ int main() {
     maxHeap.insertionIntoHeap(7);
     maxHeap.insertionIntoHeap(3);
     maxHeap.printHeap();
+
+    maxHeap.delHeap();
+    maxHeap.printHeap();
+
+    maxHeap.delHeap();
+    maxHeap.printHeap();
+
+    maxHeap.delHeap();
+    maxHeap.printHeap();
+
+    maxHeap.delHeap();
+    maxHeap.printHeap();
+
+    maxHeap.delHeap();
+    maxHeap.printHeap();
+
+    maxHeap.delHeap();
+    maxHeap.printHeap();
+    
     maxHeap.delHeap();
     maxHeap.printHeap();
     return 0;

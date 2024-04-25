@@ -68,7 +68,7 @@ void insertAtTAil(Node* &Tail , int d){
 int main() {
     // Linked List Creation
     Node* first = new Node(4);
-    Node* Head = first;
+    // Node* Head = first;
 
 
     // insertAtHead(Head,5);
@@ -99,12 +99,12 @@ int main() {
     insertAtTAil(Tail,10);
     insertAtTAil(Tail,11);
     treverse(firstNode);
-    cout<<endl;
+    // cout<<endl;
 
 
-    // Insert At Position
-    insertAtPosition(Head,7,65);
-    treverse(firstNode);
+    // // Insert At Position
+    // insertAtPosition(Head,7,65);
+    // treverse(firstNode);
 
     return 0;
 }

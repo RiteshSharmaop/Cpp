@@ -89,9 +89,9 @@ int main() {
     insertAtTAil(Tail,7,size);
     insertAtTAil(Tail,8,size);
     insertAtTAil(Tail,9,size);
-    insertAtTAil(Tail,10,size);
-    insertAtTAil(Tail,11,size);
-    insertAtTAil(Tail,12,size);
+    // insertAtTAil(Tail,10,size);
+    // insertAtTAil(Tail,11,size);
+    // insertAtTAil(Tail,12,size);
     // Tail at Last node now if we print or trever on tail then we get only last node data
     treverse(firstNode);
     cout<<endl;
@@ -105,7 +105,7 @@ int main() {
     // Deletion 
     cout<<"size : "<<size<<endl;
     cout<<"Length using Function : "<<GetLength(Head)<<endl;;
-    DeleteByVAlue(Head , size , 12 , size );
+    DeleteByVAlue(Head , size , 6 , size );
     treverse(Head);
 
     // Checking Size

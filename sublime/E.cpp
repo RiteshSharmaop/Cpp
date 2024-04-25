@@ -121,38 +121,52 @@ const ll N = 1e9+7;
 // const ll M = 1e9+7;
 
 void solve(){
-    string s,k;
-    cin >> s >> k;
-    ll cnt = 0;
-    ll freqq = 0;
-    map<ll,ll> mp;
-    for(auto i : k) 
-        freqq += i;
-    for(ll i = 0 ; i < sz(s)-sz(k) ; i++){
-        ll freq = 0;
-        string a = "";
-        for(ll j = i ; j < i+sz(k) ; j++){
-            freq += s[j];
-            a += s[j];
+    ll n ;
+    cin >> n;
+    vector<int> arr(n);
+    for(auto &i: arr)cin >> i;
+    map<int, int> mp;
+
+
+
+    ll tot=0;
+    ll i = n-1;
+    while (i >= 0){
+
+        if(arr[i]>3 && (arr[i] % (arr[i]-3)) == 0){
+
+            ll temp = arr[i]/(arr[i]-3);
+
+            if(mp.find(temp) != mp.end()) {
+                tot += mp[temp];
+            }
         }
-        // print(a);
-        mp[freq]++;
+        mp[arr[i]]++;
+        --i;
     }
-    // for(auto i : mp ) cout << i.first <<endl;
-    print(mp[freqq]);
+    print(tot);
 }
+
+// void solve() {
+//     ll n ;
+//     cin >> n;
+//     vector<int> arr(n);
+//     for(auto &i: arr)cin >> i;
+//     sortarr(arr);
+// }
+
 int main() {
     Lets_Gooo();
     RITESH;
    
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        // }   
+        }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

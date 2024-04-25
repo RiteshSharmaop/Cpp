@@ -8,7 +8,6 @@ class Human{
     int weight;
     char gender;
 
-
     public:
     int getage(){
         return this->age;

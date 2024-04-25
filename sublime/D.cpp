@@ -123,23 +123,34 @@ const ll N = 1e6 + 7;
 
 // const long  long int  N = 1e7+10;
 
+
 void solve(){
-    
-    
-    cout << (17^8);
+    ll n;
+    cin >> n;
+    string s;
+    cin >>s;
+    unordered_set<string> mp;
+    for(int i = 0 ; i < n-2 ; i++){
+        string temp = s;
+        swap(temp[i+2] , temp[0]);
+        swap(temp[i+1] , temp[0]);
+        if(temp != s) mp.insert(temp);
+        print(temp);
+    }
+    print(sz(mp));
 }
 int main() {
     Lets_Gooo();
     RITESH;   
     
-    // long long testCase;
-    // cin>>testCase;
-    // while(testCase--){
+    long long testCase;
+    cin>>testCase;
+    while(testCase--){
     // if (solve())cout<<"YES"<<endl;
         // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        // }   
+        }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 
