@@ -1,5 +1,5 @@
 /*      Jai Ganesh Ji
-        Jai Mata Dii  */
+        Jai Mata Dii      */
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -15,7 +15,6 @@ freopen("output.txt", "w", stdout);
 
 /* ascii value
 A=65,Z=90,a=97,z=122
-0 = 48 , 9 = 57
 */
  
 // Techniques :
@@ -26,7 +25,6 @@ A=65,Z=90,a=97,z=122
 
 
 #define RITESH              ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-#define ln                  "\n" // no flush, oppos of endl
 #define ll                  long long int
 // #define mp                  make_pair
 #define nt                  _int128
@@ -38,11 +36,11 @@ A=65,Z=90,a=97,z=122
 #define pll                 pair<long long int, long long int>
 #define ull                 unsigned long long
 long double                 PI =3.14159265358979323846;
-#define vvi                 vector<vector<long long int> >
+#define vvi                 vector<vector<int> >
 // #define vll                 vector<long long>
 #define pb                  push_back
 #define eb                  emplace_back
-//#define l                   long long 
+// #define l                   long long 
 #define MOD                 1000000007 // 998244353
 #define vi                  vector<int>
 #define mp(a, b)            make_pair(a, b)
@@ -50,8 +48,6 @@ long double                 PI =3.14159265358979323846;
 // #define mk(arr, n, type)    type *arr = new type[n];
 #define For(i, a, b)        for (int(i) = (a); (i) < (b); ++(i))
 #define rfor(i, a, b)       for (int(i) = (a)-1; (i) >= (b); --(i))
-#define inp(x)              for(auto &i: x) cin >> i
-#define bin_sc(a, x)        binary_search(all(a), x)
 #define FORALL(i, a)        for (auto& (i) : (a))
 #define printall(a)         for (auto& (i) : (a)) cout << i << ' '
 #define print(a)            cout << a << '\n'
@@ -70,11 +66,11 @@ long double                 PI =3.14159265358979323846;
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define llmax               9223372036854775807
 #define endl                '\n'
-#define debug(n)            cout<<(n)<<endl;
-#define INF                 4e18
+#define debug(n) cout<<(n)<<endl;
 //..........................................................................
 
 // ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);}
+
 
 long long int PowR(ll a , ll b){if( b == 0 ) return 1;long rec = PowR(a,b/2);if(b&1){    return a * rec * rec;}else return rec * rec;}
 
@@ -117,64 +113,74 @@ ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n
 // ll mod_div(ll a, ll b, ll m) {a = a % m; b = b % m; return (mod_mul(a, mminvprime(b, m), m) + m) % m;}  //only for prime m
 
 //****************************Template Ends*******************************//
-// int a = l;
+
 // const int N = 1e5 + 7; 
-// const ll N = 1e6 + 7;
-// const ll N = 1e7 + 7;
-// const ll N = 1e9+7;
-const ll N = 1e12+7;
+// const ll N = 1e7;
+const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
-// memset(dp , -1 , sizeof(dp));
-
-/*
-    String hashing 
-Note: it can exceed int size
-i = 0 -> n-1 ==> E (char[i]*31^i)
-
-        ** USE **
-
-h(s) = E  ((s[i]-'a'+1)*31^i)%M
-M = prime for Less Collision
-Code :  h = 0
-        h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
-*/
 
 
-
+// Both are KMP
+// KMP
+vector<int> KMP(string s , int n){
+    // O(n)
+    int i = 1 , len = 0 ;
+    vector<int> pi(n);
+    pi[0] = 0;
+    while(i < n){
+        if(s[i] == s[len]){
+            len++;
+            pi[i] = len;
+            i++;
+        }else {
+            if(len != 0) len = pi[len-1];
+            else {
+                pi[i] = (0);
+                i++;
+            }
+        }
+    }
+    return pi;
+}
+vector<int> kmp(string s, int n){
+    vector<int> pi(n , 0);
+    for(int i = 1 ; i < n ; i++){
+        int j = pi[i-1];
+        while(j > 0 && s[i] != s[j]) j = pi[j-1];
+        if(s[i] == s[j]){
+            j++;
+        }
+        pi[i] = j; 
+    }
+    return pi;
+}
 void solve(){
-    ll n,k;
-    cin >> n >> k;
-    string s = ""; 
-    if(k == 1) {
-        print("YES");
-        return;
+    // O(s) + O(T)
+    string t , s; 
+    cin >> t >> s;
+    string str = s+"#"+t;
+    int n = sz(str);
+    vector<int> pi = kmp(str,n);
+    int pos(0);
+    for (int i = 0; i < pi.size(); i++) {
+        if (pi[i] == s.size())
+            pos++;
     }
-    
-    ll i = 0;
-    ll zer = 0 , j = 1;
-    while(i < k){
-        zer += j;
-        j++;
-        i++;
-    }
-    n -= zer;
-    n -= (k-1);
-    // print(n);
-    if(n >= 0) print("YES");
-    else print("NO");
-}   
 
-  
+    print(pos);
+}
 int main() {
     Lets_Gooo();
-    RITESH;   
-    ll testCase;
-    cin >> testCase;
-    while(testCase--){
+    RITESH;      
+    // long long testCase = 1;
+    // cin>>testCase;
+    // while(testCase--){
+    // if (solve())cout<<"YES"<<endl;
+        // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

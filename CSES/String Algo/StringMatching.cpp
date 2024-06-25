@@ -139,6 +139,70 @@ void solve(){
     
 }
 
+
+{
+        
+    // Both are KMP
+    // KMP
+    vector<int> KMP(string s , int n){
+        // O(n)
+        int i = 1 , len = 0 ;
+        vector<int> pi(n);
+        pi[0] = 0;
+        while(i < n){
+            if(s[i] == s[len]){
+                len++;
+                pi[i] = len;
+                i++;
+            }else {
+                if(len != 0) len = pi[len-1];
+                else {
+                    pi[i] = (0);
+                    i++;
+                }
+            }
+        }
+        return pi;
+    }
+    vector<int> kmp(string s, int n){
+        vector<int> pi(n , 0);
+        for(int i = 1 ; i < n ; i++){
+            int j = pi[i-1];
+            while(j > 0 && s[i] != s[j]) j = pi[j-1];
+            if(s[i] == s[j]){
+                j++;
+            }
+            pi[i] = j; 
+        }
+        return pi;
+    }
+    void solve(){
+        // O(s) + O(T)
+        string t , s; 
+        cin >> t >> s;
+        int n = sz(t);
+        vector<int> pi = kmp(t,n);
+        // for(auto &i : pi ) cout << i << " ";
+        // cout <<endl;
+        int pos(0), i(0) , j(0);
+        while(i < sz(t)){
+            // cout << i << " " << j << " " << t[i] << " " <<  s[j] << endl;
+            if(t[i] ==  s[j]){
+                i++;
+                ++j;
+            }else {
+                if(j != 0) j = pi[j-1];
+                else ++i;
+            }
+            if(j == sz(s) ) {
+                // pos = i - sz(s);
+                // break;
+                pos++;
+            }
+        }    
+            print(pos);
+    }
+}
 int main() {
     // Lets_Gooo();
     // RITESH;   

@@ -26,6 +26,7 @@ A=65,Z=90,a=97,z=122
 
 
 #define RITESH              ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define ln                  "\n" // no flush, oppos of endl
 #define ll                  long long int
 // #define mp                  make_pair
 #define nt                  _int128
@@ -37,11 +38,11 @@ A=65,Z=90,a=97,z=122
 #define pll                 pair<long long int, long long int>
 #define ull                 unsigned long long
 long double                 PI =3.14159265358979323846;
-#define vvi                 vector<vector<int> >
+#define vvi                 vector<vector<long long int> >
 // #define vll                 vector<long long>
 #define pb                  push_back
 #define eb                  emplace_back
-// #define l                   long long 
+//#define l                   long long 
 #define MOD                 1000000007 // 998244353
 #define vi                  vector<int>
 #define mp(a, b)            make_pair(a, b)
@@ -49,6 +50,8 @@ long double                 PI =3.14159265358979323846;
 // #define mk(arr, n, type)    type *arr = new type[n];
 #define For(i, a, b)        for (int(i) = (a); (i) < (b); ++(i))
 #define rfor(i, a, b)       for (int(i) = (a)-1; (i) >= (b); --(i))
+#define inp(x)              for(auto &i: x) cin >> i
+#define bin_sc(a, x)        binary_search(all(a), x)
 #define FORALL(i, a)        for (auto& (i) : (a))
 #define printall(a)         for (auto& (i) : (a)) cout << i << ' '
 #define print(a)            cout << a << '\n'
@@ -121,6 +124,7 @@ const ll N = 1e7 + 7;
 // const ll N = 1e9+7;
 // ll dp[N];
 // const ll M = 1e9+7;
+// memset(dp , -1 , sizeof(dp));
 
 /*
     String hashing 
@@ -135,56 +139,55 @@ Code :  h = 0
         h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
 */
 
-
-// const long  long int  N = 1e7+10;
-// int check(int a , vvi arr, int n){
-//     // row
-//     for(int i = 0 ; i < n ; i++){
-//         if(arr[a][i] == 1) return -1;
-//     }
-//     // col
-//     int cnt = 0;
-//     for(int i = 0 ; i < n ; i++){
-//         if(arr[i][a] == 0) cnt++;
-//         if(cnt == 2) return -1;
-//     }
-//     return a;
-// }
-
-
-// rec
-// T.C =  O(~ 2^n * k)  approx
-int minCostRec(int n, vi arr, int k){
-    if(n == 0) return n;
-
-    int cost = 1e9;
-    for(int i = 1 ; i <= k ; ++i){
-        cost = min(cost , minCostRec(n-i , arr , 2) + abs(arr[n-i] - arr[n]));
+bool check(vector<ll> arr,vector<ll> brr , ll mid ){
+    ll i = 0 , j = 0;
+    ll n = sz(arr);
+    // cout << " MID "   << mid << endl;
+    while(j < sz(brr) && i <= n ){
+        while( i <= n && abs(brr[j] - arr[i]) <= mid){
+            // cout << "Ch " << i << " " << j << " " << arr[i] << " " <<  brr[j] << " " << abs(brr[j] - arr[i]) << endl;
+            i++;
+        }
+        j++;
     }
-    return cost;
+    // cout<<endl;
+    return i >= n;
+
+    // if(i >= n) {
+
+    //     print("TRUE");
+    //     return 1;
+    // }
+    // else {
+    //     print("FALSE");
+    //     return 0;
+    // }
 }
-
-// dp
-// T.C = N*k
-int dp[N];
-int minCost(int n, vi arr, int k){
-    if(n == 0) return n;
-    if(dp[n] != -1) return dp[n];
-
-    int cost = 1e9;
-    for(int i = 1 ; i <= k ; ++i){
-        if(n-i >= 0)
-            cost = min(cost , minCost(n-i , arr , 2) + abs(arr[n-i] - arr[n]));
-    }
-
-    return dp[n] = cost;
-}
-
 void solve(){
-    memset(dp , -1 , sizeof(dp));
-    vector<int> arr = {10 , 30 , 40 , 50 ,20};
-    int ans = minCost(4 , arr, 3);
-    print(ans);
+    ll n ,m;
+    cin >> n >> m;
+    vll arr(n);
+    vll brr(m);
+    inp(arr);
+    inp(brr);
+
+    if(n == 1 && m == 1 ){
+        print(abs(brr[0] - arr[0]));
+        return;
+    }
+    ll s = 0;
+    ll e = mx_all(arr);
+    ll mid = abs(s+(e-s)/2);
+    ll ans = -1;
+    
+    while(s <= e){
+        if(check(arr, brr, mid)){
+            ans = mid;
+            e = mid - 1;
+        }else s = mid + 1;
+        mid = abs(s+(e-s)/2) ./;
+    }
+    print(abs(ans));
 }
   
 int main() {
@@ -193,8 +196,6 @@ int main() {
     // ll testCase;
     // cin >> testCase;
     // while(testCase--){
-    // if (solve())cout<<"YES"<<endl;
-        // else cout<<"NO"<<endl;
         solve();
         // cout<<abs(-6);
         // }   
