@@ -139,55 +139,12 @@ Code :  h = 0
         h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
 */
 
-bool check(vector<ll> arr,vector<ll> brr , ll mid ){
-    ll i = 0 , j = 0;
-    ll n = sz(arr);
-    // cout << " MID "   << mid << endl;
-    while(j < sz(brr) && i <= n ){
-        while( i <= n && abs(brr[j] - arr[i]) <= mid){
-            // cout << "Ch " << i << " " << j << " " << arr[i] << " " <<  brr[j] << " " << abs(brr[j] - arr[i]) << endl;
-            i++;
-        }
-        j++;
-    }
-    // cout<<endl;
-    return i >= n;
 
-    // if(i >= n) {
-
-    //     print("TRUE");
-    //     return 1;
-    // }
-    // else {
-    //     print("FALSE");
-    //     return 0;
-    // }
-}
 void solve(){
-    ll n ,m;
-    cin >> n >> m;
-    vll arr(n);
-    vll brr(m);
-    inp(arr);
-    inp(brr);
-
-    if(n == 1 && m == 1 ){
-        print(abs(brr[0] - arr[0]));
-        return;
-    }
-    ll s = 0;
-    ll e = mx_all(arr);
-    ll mid = abs(s+(e-s)/2);
-    ll ans = -1;
-    
-    while(s <= e){
-        if(check(arr, brr, mid)){
-            ans = mid;
-            e = mid - 1;
-        }else s = mid + 1;
-        mid = abs(s+(e-s)/2) ./;
-    }
-    print(abs(ans));
+    print("Ritesh");
+    vll mp;
+    mp.emplace_back(367);
+    print(mp[0]);
 }
   
 int main() {

@@ -234,14 +234,38 @@ ll ansFo(vector<ll> arr , ll k , ll n){
 }
 
 
+/*
+2
+2
+3
+6
+*/
 void solve(){
-    print(-3 - 2);
-    // ll x,y;
-    // cin >>x >> y;
-    // ll d = 10*x;
-    // ll rq = y*10;
-    // ll denm = 100-y;
-    // print(ceil(((double)(rq-d))/denm));
+    ll n , d;
+    cin >> n >> d;
+    vi arr(n);
+    inp(arr);
+    sortarr(arr);
+    int i = 0 , j = n-1;
+    ll ans = 0;
+    while( j >= i ){
+        cout << i << " " << j << endl; 
+        if(d < arr[j]){
+            ans++;
+            j--;
+        }else {
+            ll temp = d % arr[j];
+            if(temp == 0) temp = (d / arr[j])+1;
+            else temp = (d / arr[j]) ;
+
+            ans++;
+            i += (temp-1);
+            j--;
+        }
+        cout << i << " " << j << endl;
+    }
+    cout << "op"; 
+    print(ans);
 }
   
 int main() {

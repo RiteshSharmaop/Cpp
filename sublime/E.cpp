@@ -139,23 +139,124 @@ Code :  h = 0
         h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
 */
 
-
+/*
 void solve(){
-    vll arr = {12, -1, -7, 8, -15, 30, 16, 28};
-    queue<ll> q;
+    ll n,b,a;
+    cin >> n >> a >> b;
+    vector<int> arr(n);
+    inp(arr);
+    ll maxi = -1 , sm = 0;
+    ll i = 0 , j = 0;
+    while(j <= a){
+        sm += arr[j++];
+    }
+    maxi = max(maxi , sm);
+    while(j < n && i <= j){
+        cout << i << " " << j-1 << " " << sm <<endl; 
+        print(sm);
+        if(sm < 0){
+            sm = 0;
+            // i++;
+        }
+        sm += arr[j];
+        if(j-i+1 >= a &&  j-i+1 <= b ){
+            maxi = max(maxi , sm);
+            j++;
+        }else {
+            sm += arr[i];
+            i++;
+        }
+        
+    }
+    print(sm);
+
+
     
 
 }
-  
+
+*/
+
+
+
+bool check(ll mid , ll r , ll nb , ll ns , ll nc , ll pb ,ll ps ,ll pc , ll mp[]) {
+    ll cnt = 0;
+    while(r > 0){
+        if(mp[0] > 0 ){
+            if(nb == 0) {
+                r -= (mp[0] * pb);
+            }else if(nb >= mp[0]){
+                nb -= mp[0];
+            }else {
+                ll k = mp[0] - nb;
+                nb = 0 ;
+                r -= (k * pb);
+            }
+        }
+        if(mp[1] > 0 ){
+            if(ns == 0) {
+                r -= (mp[1] * ps);
+            }else if(ns >= mp[0]){
+                ns -= mp[1];
+            }else {
+                ll k = mp[1] - ns;
+                ns = 0 ;
+                r -= (k * ps);
+            }
+        }
+        if(mp[2] > 0 ){
+            if(nc == 0) {
+                r -= (mp[2] * pc);
+            }else if(nc >= mp[2]){
+                nc -= mp[2];
+            }else {
+                ll k = mp[2] - nc;
+                nc = 0 ;
+                r -= (k * pc);
+            }
+        }
+        if(r >= 0) cnt++; 
+    }
+    if(cnt >= mid) return true;
+    return false;
+}
+void solve(){
+    string str;
+    cin >> str;
+    ll mp[3] = {0};
+
+    ll nb , ns , nc , pb , ps , pc ,r;
+    cin >> nb >> ns >> nc >> pb >>  ps  >>  pc;
+    cin >> r;
+    for(auto i : str) {
+        if(i == 'B') mp[0]++;
+        else if(i == 'S') mp[1]++;
+        else mp[2]++;
+    }
+    ll s = 0 , e = 1e18;
+    ll mid = s+(e-s)/2;
+    ll ans = 0;
+    while( s <= e ){
+        if(check( mid ,  r ,  nb ,  ns ,  nc ,  pb , ps , pc , mp)){
+            // print(ans);
+            ans = mid;
+            s = mid + 1;
+        }else e = mid-1;
+
+        mid = s+(e-s)/2;
+    }
+    print(ans);
+}
 int main() {
     Lets_Gooo();
     RITESH;   
-    ll testCase;
-    cin >> testCase;
-    while(testCase--){
+    // ll testCase;
+    // cin >> testCase;
+    // while(testCase--){
         solve();
+        // cout<<"Doneeee";
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

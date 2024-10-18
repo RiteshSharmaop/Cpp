@@ -138,21 +138,62 @@ M = prime for Less Collision
 Code :  h = 0
         h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
 */
-
-
+bool ckeck(ll mid , vll arr){
+    ll indI = -1 , indJ = -1;
+    int s = 1,e = n-1;
+    while(s <= e){
+        if(arr[s-1] < arr[s]) s++;
+        else {
+            s--;
+            indI = s;
+        }
+    }
+    while(){
+        s++;
+    }
+      
+    while(arr[e] > arr[e-1] && s < e){
+        e--;
+    }
+    arr[s] = (arr[s] + 1) %m;
+    arr[e] = (arr[e] +1) %m;
+}
 void solve(){
-    
+    ll n , m;
+    cin >> n >> m;
+    vll arr(n);
+    inp(arr);
+    bool flag = true;
+    for(int i = 1 ; i < n ; ++i){
+        if(arr[i-1] > arr[i]) {
+            flag = 0;
+            break;
+        }
+    }
+    if(flag) {
+        print(0);
+        return;
+    }
+    ll s = 0 , e = n-1;
+    while(s <= e){
+        ll mid = s+(e-s)/2;
+        if(check(mid , arr)){
+
+        }else {
+
+        }
+    }
 }
   
 int main() {
     Lets_Gooo();
     RITESH;   
-    ll testCase;
-    cin >> testCase;
-    while(testCase--){
+    // ll testCase;
+    // cin >> testCase;
+    // while(testCase--){
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 
