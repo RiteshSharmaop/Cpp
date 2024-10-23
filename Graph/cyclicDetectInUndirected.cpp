@@ -54,7 +54,7 @@ class Graph{
         queue<int> q;
         q.push(src);
         visited[src] = true;
-        parent[src]=-1;
+        parent[src] = -1;
 
         while(!q.empty()){
             int front = q.front();
@@ -73,17 +73,29 @@ class Graph{
         }
         return false;
     }
+    bool isCyclicDFS(int src , int parent , map<int,bool> & visited){
+        visited[src] = 1;
+
+        for(auto neighbour : adjList[src] ){
+            if(!visited[neighbour]){
+                bool cycleDet = isCyclicDFS(neighbour , src , visited);
+                if(cycleDet) return true;
+            }else if(visited[neighbour] && neighbour != parent) return true;
+        }
+        return false;
+    }
 };
 int main() {
     
     Graph<int> G;
-    G.addEdge(0,1,0);
     G.addEdge(1,2,0);
-    G.addEdge(1,5,0);
-    G.addEdge(2,5,0);
+    G.addEdge(2,3,0);
     G.addEdge(3,4,0);
-    // G.addEdge(2,4,0);
-    // G.addEdge(3,4,0);
+    G.addEdge(3,5,0);
+    // G.addEdge(4,5,0);
+    G.addEdge(2,6,0);
+    G.addEdge(6,7,0);
+    // G.addEdge(7,8,0);
     // G.printAdj();
     cout <<endl << endl;
 
@@ -96,7 +108,24 @@ int main() {
             G.bfs(i, visited);
 
         }
+    }cout << endl;
+    bool  ans = false;
+    for(int i = 0 ; i < n ; ++i ) {
+        if(G.isCyclicBFS(i)){
+            ans = true;
+        }
     }
+    cout << ans << endl;
+
+    // ans = false;
+    // map<int,bool> visited2;
+    // for(int i = 0 ; i < n ; ++i ) {
+    //     if( G.isCyclicDFS(i,-1,visited2)){
+    //         ans = true;
+    //     }
+    // }
+    // cout << ans << endl;
+
 
     
     return 0;

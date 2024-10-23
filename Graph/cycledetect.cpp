@@ -48,6 +48,31 @@ class Graph{
             cout <<  endl;
         }
     }
+    bool cycleDetect(int src){
+        map<int , bool> visited;
+        map<int , int> parent;
+        queue<int> q;
+
+        q.push(src);
+        visited[src] = true;
+        parent[src] = -1;
+
+        while(!q.empty()) {
+            int front = q.front();
+            q.pop();
+
+            for(auto neighbour : adjList[front]){
+                if(visited[neighbour] && neighbour != parent[front]){
+                    return true;
+                }else if(!visited[neighbour]){
+                    q.push(neighbour);
+                    visited[neighbour] = true;
+                    parent[neighbour] = front;
+                }
+            }
+        }
+        return false;
+    }
     bool isCyclicDFS(int src , int parent , map<int,bool> & visited){
         visited[src] = 1;
 
@@ -63,24 +88,29 @@ class Graph{
 int main() {
     
     Graph<int> G;
-    G.addEdge(0,2,0);
-    G.addEdge(1,3,0);
+    G.addEdge(0,1,0);
+    G.addEdge(1,2,0);
     G.addEdge(2,3,0);
     G.addEdge(2,4,0);
-    G.addEdge(4,3,0);
+    G.addEdge(4,5,0);
+    G.addEdge(3,5,0);
+    G.addEdge(5,6,0);
 
-    map<int,bool> visited;
-    map<int,bool> visited2;
-    int n = 5;
-    cout <<" GRAPH 1 "<< endl;
-    // To handle Disconnected components
-    for(int i = 0 ; i < n ; ++i ){
-        if(!visited2[i]){
-            G.bfs(i, visited2);
-        }
-    }cout <<endl;
-    // string ans = (G.isCyclicDFS(0,-1,visited)) ? "Cyclic is Present"  :  "Cyclic is Not Present" ;
-    cout << "Cycle or Not : " << (G.isCyclicDFS(0,-1,visited)) << endl;
+
+    cout << G.cycleDetect(0) <<endl;
+ 
+    // map<int,bool> visited;
+    // map<int,bool> visited2;
+    // int n = 5;
+    // cout <<" GRAPH 1 "<< endl;
+    // // To handle Disconnected components
+    // for(int i = 0 ; i < n ; ++i ){
+    //     if(!visited2[i]){
+    //         G.bfs(i, visited2);
+    //     }
+    // }cout <<endl;
+    // // string ans = (G.isCyclicDFS(0,-1,visited)) ? "Cyclic is Present"  :  "Cyclic is Not Present" ;
+    // cout << "Cycle or Not : " << (G.isCyclicDFS(0,-1,visited)) << endl;
     
     
     // cout << endl << endl << "Graph 2" <<endl;

@@ -141,40 +141,13 @@ Code :  h = 0
 
 
 void solve(){
-    ll n,a , b;
-    cin >> n >> a >> b;
-    vll arr(n);
-    inp(arr);
+    ll mid = 10 , ans = 0 , low = 0;
+     low = mid + 1; ans = mid;
 
-    ll sum = arr[0] , maxi = -1e11;
-    ll i = 0 , j = 0;
-    while(i < n && j < n){
-        // sum += arr[i]; || arr[j]
-        cout<<i << " " << j << " " << sum  << " " << maxi<<endl;
-        if(sum < 0){
-            i++;
-            sum += arr[i];
-            maxi = max(maxi , sum);
-            j = i;
-            continue;
-        }
-        if(((j-i)+1 >= a && (j-i)+1 <=b)){
-            if(sum >= 0){
-                maxi = max(maxi , sum);
-                j++;
-                sum += arr[j];
-            }else {
-                i++;
-                j = i;
-                sum += arr[i];
-            }
-        }else {
-            sum -= arr[i];
-            i++;
-            sum += arr[i];
-        }
-    }
-    print(maxi);
+    print(mid);
+    print(ans);
+
+
 
 }
   

@@ -179,71 +179,41 @@ void solve(){
 
 
 
-bool check(ll mid , ll r , ll nb , ll ns , ll nc , ll pb ,ll ps ,ll pc , ll mp[]) {
-    ll cnt = 0;
-    while(r > 0){
-        if(mp[0] > 0 ){
-            if(nb == 0) {
-                r -= (mp[0] * pb);
-            }else if(nb >= mp[0]){
-                nb -= mp[0];
-            }else {
-                ll k = mp[0] - nb;
-                nb = 0 ;
-                r -= (k * pb);
-            }
-        }
-        if(mp[1] > 0 ){
-            if(ns == 0) {
-                r -= (mp[1] * ps);
-            }else if(ns >= mp[0]){
-                ns -= mp[1];
-            }else {
-                ll k = mp[1] - ns;
-                ns = 0 ;
-                r -= (k * ps);
-            }
-        }
-        if(mp[2] > 0 ){
-            if(nc == 0) {
-                r -= (mp[2] * pc);
-            }else if(nc >= mp[2]){
-                nc -= mp[2];
-            }else {
-                ll k = mp[2] - nc;
-                nc = 0 ;
-                r -= (k * pc);
-            }
-        }
-        if(r >= 0) cnt++; 
+
+ll n , k;
+ll m1 = 0 , m2 = 0;
+
+ll check(ll kk,vll a,vll b ){
+    ll ans = 0;
+    ll z = 0;
+    for(auto i = 0 ; i < n ; ++i) {
+        a[i] = a[i] * kk;
+        b[i] = (a[i] - b[i]);
+        ans += max(b[i] , z);
     }
-    if(cnt >= mid) return true;
-    return false;
+    return ans;
 }
 void solve(){
-    string str;
-    cin >> str;
-    ll mp[3] = {0};
-
-    ll nb , ns , nc , pb , ps , pc ,r;
-    cin >> nb >> ns >> nc >> pb >>  ps  >>  pc;
-    cin >> r;
-    for(auto i : str) {
-        if(i == 'B') mp[0]++;
-        else if(i == 'S') mp[1]++;
-        else mp[2]++;
+    cin >> n >> k;
+    vll a(n);
+    vll b(n);
+    for(auto &i : a){
+        cin >> i;
+        m1 = max(m1 , i);
     }
-    ll s = 0 , e = 1e18;
-    ll mid = s+(e-s)/2;
+    for(auto &i : b){
+        cin >> i;
+        m2 = max(m2 , i);
+    }
     ll ans = 0;
-    while( s <= e ){
-        if(check( mid ,  r ,  nb ,  ns ,  nc ,  pb , ps , pc , mp)){
-            // print(ans);
+    ll low = 0 , end = 1e18;
+    while(low <= end) {
+        ll mid = low +(end-low)/2;
+        ll x = check(mid,a,b);
+        if(k >= x){
             ans = mid;
-            s = mid + 1;
-        }else e = mid-1;
-
-        mid = s+(e-s)/2;
+            low = mid +1;
+        }else end = mid -1;
     }
     print(ans);
 }

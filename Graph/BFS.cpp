@@ -2,6 +2,7 @@
 using namespace std;
 
 template<typename T>
+// T.C --> O(V+E)
 
 class Graph{
     public:
