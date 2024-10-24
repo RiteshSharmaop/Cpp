@@ -139,23 +139,47 @@ Code :  h = 0
         h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
 */
 
+ll n , h;
 
+ll check(ll mid , vll arr) {
+    ll cnt = 0;
+    for(int i = 0 ; i < n-1 ; ++i){
+        if(arr[i]+mid > arr[i+1]) {
+            cnt += (arr[i+1] - arr[i]);
+        }else {
+            cnt += mid;
+        }
+    }
+    // handle last element
+    cnt += mid;
+    return cnt;
+}
 void solve(){
-    print("Ritesh");
-    vll mp;
-    mp.emplace_back(367);
-    print(mp[0]);
+    cin >> n >> h;
+    vll arr(n);
+    inp(arr);
+    ll s = 0 , e = h;
+    ll ans = 0;
+    while(s <= e){
+        ll mid = s+(e-s)/2;
+
+        if(check(mid , arr) >= h){
+            e = mid -1;
+            ans = mid;
+        }else s = mid +1;
+    }
+    print(ans);
 }
   
 int main() {
     Lets_Gooo();
     RITESH;   
-    // ll testCase;
-    // cin >> testCase;
-    // while(testCase--){
+    ll testCase;
+    cin >> testCase;
+    while(testCase--){
         solve();
         // cout<<abs(-6);
-        // }   
+        }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 
