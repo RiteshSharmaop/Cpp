@@ -139,47 +139,102 @@ Code :  h = 0
         h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
 */
 
-ll n , h;
-
-ll check(ll mid , vll arr) {
-    ll cnt = 0;
-    for(int i = 0 ; i < n-1 ; ++i){
-        if(arr[i]+mid > arr[i+1]) {
-            cnt += (arr[i+1] - arr[i]);
-        }else {
-            cnt += mid;
+ll n , x,y , r , u;
+string s;
+pair<bool , int> check(ll mid ) {
+    // cout << mid << endl;
+    ll xx = 0 , yy = 0 , cnt = 0;
+    bool first = 0 , sec = 0;
+    ll fVal = 0 , lVal = 0;
+    ll j = 1;
+    for(auto i : s){
+        if( i == 'R' || i == 'L' ) {
+            if(r > x){
+                if(!first){
+                    fVal = j;
+                    first = 1;
+                }
+                lVal = j;
+                r--;
+                cnt++;
+            }else if(r < x){
+                if(!first){
+                    fVal = j;
+                    first = 1;
+                }lVal = j;
+                r++;
+                cnt++;
+            }
+        }else if(i == 'U' || i == 'D'){
+            if(u > y) {
+                if(!first){
+                    fVal = j;
+                    first = 1;
+                }lVal = j;
+                u--;
+                cnt++;
+            }else if(u < y){
+                if(!first){
+                    fVal = j;
+                    first = 1;
+                }lVal = j;
+                u++;
+                cnt++;
+            }
         }
+        j++;
     }
-    // handle last element
-    cnt += mid;
-    return cnt;
+    // cout << fVal << " " << lVal << endl;
+    if(cnt <= mid) {
+        // cout << "ans : " << ((lVal - fVal) +1) << endl;
+        pair<bool , int> p = mp(true, ((lVal - fVal) +1));
+        return p;
+    }else {
+        pair<bool , int> p = make_pair(false, (lVal - fVal) +1);
+        return p;
+    }
 }
 void solve(){
-    cin >> n >> h;
-    vll arr(n);
-    inp(arr);
-    ll s = 0 , e = h;
-    ll ans = 0;
-    while(s <= e){
-        ll mid = s+(e-s)/2;
-
-        if(check(mid , arr) >= h){
+    cin >> n >> s >> x >> y;
+    ll low = 0 , e = n;
+    for(auto i : s){
+        if(i == 'R') r++; 
+        else if(i == 'L') r--;
+        else if(i == 'U') u++;
+        else u--;
+    }
+    if(abs(x) + abs(y) > n) {
+        print(-1);
+        return;
+    }
+    if(r == x && u == y) {
+        cout << 0 << endl;
+        return;
+    }
+    ll ans = -1;
+    while( low < e ) {
+        ll mid = low+(e-low)/2;
+        pair<bool , int> p = check(mid);
+        if(p.first){
+            ans = p.second;
             e = mid -1;
-            ans = mid;
-        }else s = mid +1;
+        }else {
+            low = mid +1;
+        }
     }
     print(ans);
+
 }
   
 int main() {
     Lets_Gooo();
     RITESH;   
-    ll testCase;
-    cin >> testCase;
-    while(testCase--){
+    // ll testCase;
+    // cin >> testCase;
+    // while(testCase--){
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

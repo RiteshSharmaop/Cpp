@@ -240,43 +240,54 @@ ll ansFo(vector<ll> arr , ll k , ll n){
 3
 6
 */
-void solve(){
-    ll n , d;
-    cin >> n >> d;
-    vi arr(n);
-    inp(arr);
-    sortarr(arr);
-    int i = 0 , j = n-1;
-    ll ans = 0;
-    while( j >= i ){
-        cout << i << " " << j << endl; 
-        if(d < arr[j]){
-            ans++;
-            j--;
-        }else {
-            ll temp = d % arr[j];
-            if(temp == 0) temp = (d / arr[j])+1;
-            else temp = (d / arr[j]) ;
+ll n , m , k,t;
 
-            ans++;
-            i += (temp-1);
-            j--;
+bool canRead(ll books,vll arr) {
+    ll i = 0 , j = 0;
+    ll val = 0;
+    ll ans = 0;
+    while(j < n && i < n){
+        if(val + arr[j] <= t){
+            ans = max(ans , j-i+1);
+            val += arr[j];
+            j++;
+        }else {
+            val -= arr[i];
+            i++;
+            ans = max(ans , j-i+1);
         }
-        cout << i << " " << j << endl;
+
     }
-    cout << "op"; 
+    if(books <= ans) return true;
+    return false;
+}
+void solve(){
+
+    cin >> n >> t;
+    vll arr(n);
+    inp(arr);
+
+
+    ll s = 0 , e = n , ans = 0;
+    while(s <= e) {
+        ll mid = s+(e-s)/2;
+        if(canRead(mid , arr)){
+            ans = mid;
+            s = mid +1;
+        }else e = mid -1;
+    }
     print(ans);
 }
   
 int main() {
     Lets_Gooo();
     RITESH;   
-    ll testCase;
-    cin >> testCase;
-    while(testCase--){
+    // ll testCase;
+    // cin >> testCase;
+    // while(testCase--){
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 
