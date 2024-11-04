@@ -141,40 +141,23 @@ Code :  h = 0
 */
 
 
-
 void solve(){
-    ll n,k;
-    cin >> n >> k;
-    string s = ""; 
-    if(k == 1) {
-        print("YES");
-        return;
-    }
+   int a = 07;
+   print(a);
     
-    ll i = 0;
-    ll zer = 0 , j = 1;
-    while(i < k){
-        zer += j;
-        j++;
-        i++;
-    }
-    n -= zer;
-    n -= (k-1);
-    // print(n);
-    if(n >= 0) print("YES");
-    else print("NO");
+
 }   
 
   
 int main() {
     Lets_Gooo();
     RITESH;   
-    ll testCase;
-    cin >> testCase;
-    while(testCase--){
+    // ll testCase;
+    // cin >> testCase;
+    // while(testCase--){
         solve();
         // cout<<abs(-6);
-        }   
+        // }   
     // auto sum = [](int a , int b){return a + b;} ;
     // cout<<sum(3,5);
 

@@ -64,8 +64,9 @@ long double                 PI =3.14159265358979323846;
 #define pqmn                priority_queue<int, vector<int>, greater<int> >
 #define max3(a, b, c)       max((a), max((b), (c)))
 #define min3(a, b, c)       min((a), min((b), (c)))
-#define mx_all(c)           *max_element((c).begin(), (c).end())
-#define mn_all(c)           *min_element((c).begin(), (c).end())
+#define maxAll(c)           *max_element((c).begin(), (c).end())
+#define minAll(c)           *min_element((c).begin(), (c).end())
+#define sumAll(a)           accumulate((a).begin(), (a).end(), 0)
 #define lwr_b(c, a)         lower_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define upr_b(c, a)         upper_bound((c).begin(), (c).end(), (a)) - ((c).begin())
 #define llmax               9223372036854775807
@@ -139,144 +140,33 @@ Code :  h = 0
         h = ((s[i] - 'a' + 1)+ (31 * h)) % MOD
 */
 
-ll ansS(vector<ll> arr , ll k , ll n){
-    ll maxEle = mx_all(arr);
-    vector<ll> cnt;
-    for(int i = 0 ; i < n ; ++i){
-        if(maxEle == arr[i]) {
-            cnt.emplace_back(i);
-        } 
-    }
-    ll ret = -1;
-    ll ind = 0;
-    while(ind < sz(cnt)){
-        ll num = arr[cnt[ind]]; 
-        arr[cnt[ind]] = 1;
-        ll temp = 0;  
-        for(int i = 1 ; i < n ; ++i){
-            temp += abs(arr[i] - (arr[i-1]));
-        }
-        ret = max(ret , temp);
-        arr[cnt[ind]] = num;
-        ind++;
-    }
-    return ret;
-}
-
-ll ansFi(vector<ll> arr , ll k , ll n){
-    ll maxEle = mx_all(arr);
-    vector<ll> cnt;
-    for(int i = 0 ; i < n ; ++i){
-        if(maxEle == arr[i]) {
-            cnt.emplace_back(i);
-        } 
-    }
-    ll ret = -1;
-    ll ind = 0;
-    while(ind < sz(cnt)){
-        ll num = arr[cnt[ind]]; 
-        arr[cnt[ind]] = k;
-        ll temp = 0;  
-        for(int i = 1 ; i < n ; ++i){
-            temp += abs(arr[i] - (arr[i-1]));
-        }
-        ret = max(ret , temp);
-        arr[cnt[ind]] = num;
-        ind++;
-    }
-    return ret;
-}
-ll ansF(vector<ll> arr , ll k , ll n){
-    ll minEle = mn_all(arr);
-    vector<ll> cnt;
-    for(int i = 0 ; i < n ; ++i){
-        if(minEle == arr[i]) {
-            cnt.emplace_back(i);
-        } 
-    }
-    ll ret = -1;
-    ll ind = 0;
-    while(ind < sz(cnt)){
-        // ll num = arr[cnt[ind]]; 
-        arr[cnt[ind]] = k;
-        ll temp = 0;  
-        for(int i = 1 ; i < n ; ++i){
-            temp += abs(arr[i] - (arr[i-1]));
-        }
-        ret = max(ret , temp);
-        arr[cnt[ind]] = minEle;
-        ind++;
-    }
-    return ret;
-}
-ll ansFo(vector<ll> arr , ll k , ll n){
-    ll minEle = mn_all(arr);
-    vector<ll> cnt;
-    for(int i = 0 ; i < n ; ++i){
-        if(minEle == arr[i]) {
-            cnt.emplace_back(i);
-        } 
-    }
-    ll ret = -1;
-    ll ind = 0;
-    while(ind < sz(cnt)){
-        // ll num = arr[cnt[ind]]; 
-        arr[cnt[ind]] = 1;
-        ll temp = 0;  
-        for(int i = 1 ; i < n ; ++i){
-            temp += abs(arr[i] - (arr[i-1]));
-        }
-        ret = max(ret , temp);
-        arr[cnt[ind]] = minEle;
-        ind++;
-    }
-    return ret;
-}
+ll n;
 
 
-/*
-2
-2
-3
-6
-*/
-ll n , m , k,t;
-
-bool canRead(ll books,vll arr) {
-    ll i = 0 , j = 0;
-    ll val = 0;
-    ll ans = 0;
-    while(j < n && i < n){
-        if(val + arr[j] <= t){
-            ans = max(ans , j-i+1);
-            val += arr[j];
-            j++;
-        }else {
-            val -= arr[i];
-            i++;
-            ans = max(ans , j-i+1);
-        }
-
-    }
-    if(books <= ans) return true;
-    return false;
-}
 void solve(){
-
-    cin >> n >> t;
+    cin >> n;
     vll arr(n);
     inp(arr);
-
-
-    ll s = 0 , e = n , ans = 0;
-    while(s <= e) {
-        ll mid = s+(e-s)/2;
-        if(canRead(mid , arr)){
-            ans = mid;
-            s = mid +1;
-        }else e = mid -1;
-    }
-    print(ans);
+    sortarr(arr);
+    ll cnt = n;
+    int i = n-1 , j = n-2;
+    while(i >= 0 && j >= 0){
+        if(i == j) {
+            i--;
+            continue;
+        }
+        if(arr[i] == 0){
+            i--;
+        }else if(arr[j] == 0) j--;
+        else if(arr[j] >= arr[i]*2 ){
+            arr[i] = 0;
+            arr[j] = 0;
+            cnt--;
+            i--;
+            j--;
+        }else if(arr[i]*2 > arr[j]) i--;
+    }    
+    print(cnt);
 }
   
 int main() {
